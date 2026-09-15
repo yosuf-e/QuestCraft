@@ -1,5 +1,3 @@
-
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,8 +57,6 @@
   );
   background-size: 150%;
   color: white;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
 .btn-glow:hover {
@@ -82,7 +78,7 @@
     <button style="border-radius: 15%;" data-page="math" class="page-link btn-glow">Math</button>
     <button style="border-radius: 15%;" data-page="ela" class="page-link btn-glow">ELA</button>
     <button style="border-radius: 15%;" data-page="games" class="page-link btn-glow">Games</button>
-    <button style="border-radius: 15%;" data-page="profile" class="page-link btn-glow">Profile (Beta)</button>
+    <button style="border-radius: 15%;" data-page="profile" class="page-link btn-glow">Profile</button>
     <span class="ml-auto flex items-center gap-4 text-xs">
       <span class="flex items-center gap-1">
         <img src="https://cdn-icons-png.flaticon.com/128/8727/8727031.png" alt="XP" class="w-4 h-4">
@@ -142,7 +138,7 @@
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
           <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="Profile-Icon" style="height: 40px; width: 40px;">
           <h2 class="text-xl font-semibold">Profile Customization</h2>
-          <p class="text-sm text-slate-300">Customize Your Shirt, Pants, Hair, and Face!</p>
+          <p class="text-sm text-slate-300">Chose Your Avatar & Pet, Or Just Restart!</p>
           <button data-page="profile"
                   class="btn-glow page-link mt-2 px-3 py-2 rounded-lg text-slate-900 font-semibold w-full btn-rainbow">
             🚨 Beta Version
@@ -315,6 +311,83 @@
       </div>
     </section>
 
+  <!-- PROFILE CUSTOMIZATION PAGE -->
+<section id="page-profile" class="hidden px-4 py-6">
+  <div class="max-w-3xl mx-auto mt-10 bg-slate-800/90 p-6 rounded-xl shadow-lg text-white">
+
+    <h2 class="text-2xl font-bold mb-6 text-center">Profile Customization</h2>
+    <!-- CHARACTER + PET SIDE-BY-SIDE -->
+    <div class="flex justify-center items-start gap-20">
+
+      <!-- CHARACTER -->
+      <div class="text-center">
+
+        <h3 class="text-xl font-bold mb-2">CHARACTER</h3>
+
+        <div class="flex items-center justify-center gap-4 mb-4">
+          <button onclick="switchCharacter(-1)"
+                  class="btn-glow px-2 py-1 bg-slate-600 rounded-lg hover:bg-slate-500">←</button>
+
+          <img id="characterPreview"
+               src=""
+               class="w-40 select-none pointer-events-none"
+               draggable="false">
+
+          <button onclick="switchCharacter(1)"
+                  class="btn-glow px-2 py-1 bg-slate-600 rounded-lg hover:bg-slate-500">→</button>
+        </div>
+
+        <div class="flex items-center justify-center gap-2 mb-2">
+          <span id="characterCost" class="text-yellow-300 font-bold"></span>
+        </div>
+
+        <button id="characterButton"
+                class="btn-glow px-6 py-2 bg-yellow-500 text-black font-bold rounded-lg">
+          BUY
+        </button>
+      </div>
+
+      <!-- VERTICAL DIVIDER -->
+      <div class="w-px bg-slate-600 h-64 opacity-60"></div>
+
+      <!-- PET -->
+      <div class="text-center">
+
+        <h3 class="text-xl font-bold mb-2">PET</h3>
+
+        <div class="flex items-center justify-center gap-4 mb-4">
+          <button onclick="switchPet(-1)"
+                  class="btn-glow px-2 py-1 bg-slate-600 rounded-lg hover:bg-slate-500">←</button>
+
+          <img id="petPreview"
+               src=""
+               class="mt-20 w-32 select-none pointer-events-none"
+               draggable="false">
+
+          <button onclick="switchPet(1)"
+                  class="btn-glow px-2 py-1 bg-slate-600 rounded-lg hover:bg-slate-500">→</button>
+        </div>
+
+        <div class="flex items-center justify-center gap-2 mb-2">
+          <span id="petCost" class="text-yellow-300 font-bold"></span>
+        </div>
+
+        <button id="petButton"
+                class="btn-glow px-6 py-2 bg-yellow-500 text-black font-bold rounded-lg">
+          EQUIP
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- RESET PROGRESS BUTTON -->
+<div class="max-w-3xl mx-auto mt-4 text-center">
+  <button onclick="resetProgress()"
+          class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg">
+    Reset All Profile Progress
+  </button>
+</div>
+</section>
+
   </main>
 
   <!-- Sounds -->
@@ -328,7 +401,7 @@
     <source src="https://cdn.pixabay.com/audio/2024/10/10/audio_7c1f7894bd.mp3" type="audio/ogg">
   </audio>
   <audio id="btnClickSound" 
-  src="https://www.myinstants.com/media/sounds/minecraft_click.mp3">
+  src="https://cdn.pixabay.com/audio/2025/01/20/audio_9afb73ceb5.mp3">
 </audio>
   <audio id="bgMusic" 
   src="https://cdn.pixabay.com/audio/2025/12/21/audio_3831917328.mp3" loop>
@@ -337,37 +410,49 @@
   <script>
     // BG Music
     window.addEventListener('DOMContentLoaded', () => {
-  const bgMusic = document.getElementById('bgMusic');
-  bgMusic.volume = 0.05; // 5% volume
-  bgMusic.play().catch(() => {
-    // Browser blocked autoplay — user must interact first
-    document.body.addEventListener('click', () => {
-      bgMusic.play();
-    }, { once: true });
-  });
-});
+      const bgMusic = document.getElementById('bgMusic');
+      if (bgMusic) {
+        bgMusic.volume = 0.05; // 5% volume
+        bgMusic.play().catch(() => {
+          document.body.addEventListener('click', () => {
+            bgMusic.play();
+          }, { once: true });
+        });
+      }
+    });
 
     // XP & Coins (persisted)
-    let xp = parseInt(localStorage.getItem('xp') || '0');
-    let coins = parseInt(localStorage.getItem('coins') || '0');
+    let xp = parseInt(localStorage.getItem('xp') || '10', 10);
+    let coins = parseInt(localStorage.getItem('coins') || '10', 10);
     const xpDisplay = document.getElementById('xpDisplay');
     const coinDisplay = document.getElementById('coinDisplay');
-    xpDisplay.textContent = xp;
-    coinDisplay.textContent = coins;
+    
+    if (xpDisplay) xpDisplay.textContent = xp;
+    if (coinDisplay) coinDisplay.textContent = coins;
+
+    function updateCoinDisplay() {
+      localStorage.setItem('coins', coins);
+      if (coinDisplay) coinDisplay.textContent = coins;
+    }
+
+    function updateXPDisplay() {
+      localStorage.setItem('xp', xp);
+      if (xpDisplay) xpDisplay.textContent = xp;
+    }
 
     function addXP(amount) {
       xp += amount;
-      localStorage.setItem('xp', xp);
-      xpDisplay.textContent = xp;
+      updateXPDisplay();
     }
+
     function addCoins(amount) {
       coins += amount;
-      localStorage.setItem('coins', coins);
-      coinDisplay.textContent = coins;
+      updateCoinDisplay();
     }
 
     // Confetti
     function launchConfetti() {
+      if (typeof confetti !== 'function') return;
       const duration = 1200;
       const end = Date.now() + duration;
       (function frame() {
@@ -383,10 +468,11 @@
     const soundTimeUp = document.getElementById('soundTimeUp');
 
     // Page navigation
-    const pages = ['home', 'math', 'ela', 'games'];
+    const pages = ['home', 'math', 'ela', 'games', 'profile'];
     function showPage(name) {
       pages.forEach(p => {
-        document.getElementById('page-' + p).classList.toggle('hidden', p !== name);
+        const el = document.getElementById('page-' + p);
+        if (el) el.classList.toggle('hidden', p !== name);
       });
     }
     document.querySelectorAll('.page-link').forEach(btn => {
@@ -413,27 +499,22 @@
     }
 
     function generateMathQuestion(grade) {
+      if (!mathQuestionText || !mathChoices) return;
       currentGrade = grade;
       let question = '';
       let answer = 0;
       let visual = '';
       currentShapeType = null;
-      mathSvgContainer.innerHTML = '';
+      if (mathSvgContainer) mathSvgContainer.innerHTML = '';
 
       if (grade === 1) {
-        // Grade 1: counting & visual addition with apples
         const a = randomInt(1, 5);
         const b = randomInt(1, 5);
         answer = a + b;
         question = `Count the apples and add them together. How many apples are there in total?`;
-        visual =
-          '🍎 '.repeat(a) +
-          '   +   ' +
-          '🍎 '.repeat(b);
+        visual = '🍎 '.repeat(a) + '   +   ' + '🍎 '.repeat(b);
       } else if (grade === 2) {
-        // Grade 2: patterns & missing numbers with apples
         if (Math.random() < 0.5) {
-          // Number pattern
           const start = randomInt(1, 5);
           const step = randomInt(1, 3);
           const seq = [start, start + step, start + 2 * step, start + 3 * step];
@@ -441,20 +522,14 @@
           question = `Identify the pattern and extend it. What number comes next?`;
           visual = seq.join('  ') + '  ...';
         } else {
-          // Missing number equation with apples
           const total = randomInt(5, 12);
           const known = randomInt(1, total - 1);
           const missing = total - known;
           answer = missing;
           question = `Find the missing number: ${known} + ? = ${total}`;
-          visual =
-            '🍎 '.repeat(known) +
-            '   +   ' +
-            '?   =   ' +
-            '🍎 '.repeat(total);
+          visual = '🍎 '.repeat(known) + '   +   ' + '?   =   ' + '🍎 '.repeat(total);
         }
       } else if (grade === 3) {
-        // Grade 3: basic multiplication & division
         if (Math.random() < 0.5) {
           const a = randomInt(2, 10);
           const b = randomInt(2, 10);
@@ -468,7 +543,6 @@
           question = `What is ${dividend} ÷ ${divisor}?`;
         }
       } else if (grade === 4) {
-        // Grade 4: properties & solving for x
         if (Math.random() < 0.5) {
           const x = randomInt(1, 10);
           const a = randomInt(1, 5);
@@ -484,12 +558,10 @@
           question = `Use the distributive property: ${a}(${b} + ${c}) = ?`;
         }
       } else if (grade === 5) {
-        // Grade 5: order of operations & equations
         if (Math.random() < 0.5) {
           const a = randomInt(1, 5);
           const b = randomInt(1, 5);
           const c = randomInt(1, 5);
-          // Expression: a + b^2 × c
           answer = a + Math.pow(b, 2) * c;
           question = `Evaluate: ${a} + ${b}<sup>2</sup> × ${c}`;
         } else {
@@ -501,12 +573,10 @@
           question = `Solve the equation: ${a}x + ${b} = ${c}`;
         }
       } else if (grade === 6) {
-        // Grade 6: geometry & area (MCQ, SVG shapes, rounded to nearest tenth)
         const shapeTypes = ['circle', 'square', 'rectangle', 'rhombus', 'triangle'];
         const shape = shapeTypes[randomInt(0, shapeTypes.length - 1)];
         currentShapeType = shape;
 
-        let formulaText = '';
         let displayText = '';
         let correctArea = 0;
 
@@ -546,11 +616,10 @@
 
       currentMathAnswer = answer;
       mathQuestionText.innerHTML = question;
-      mathVisual.textContent = visual;
-      mathFeedback.textContent = '';
+      if (mathVisual) mathVisual.textContent = visual;
+      if (mathFeedback) mathFeedback.textContent = '';
       mathChoices.innerHTML = '';
 
-      // Build choices (MCQ)
       const choices = [answer];
       while (choices.length < 4) {
         let delta = (currentGrade === 6) ? (Math.random() * 4 - 2) : randomInt(-3, 3);
@@ -565,30 +634,26 @@
       choices.forEach((c) => {
         const btn = document.createElement('button');
         btn.textContent = c;
-        btn.className =
-          'px-3 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 text-sm font-semibold';
+        btn.className = 'px-3 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 text-sm font-semibold';
         btn.addEventListener('click', () => {
-
-  // Disable all buttons immediately to prevent money glitch
           document.querySelectorAll('#mathChoices button').forEach(b => {
             b.disabled = true;
             b.classList.add('opacity-50', 'cursor-not-allowed');
           });
 
           if (c === currentMathAnswer) {
-            mathFeedback.textContent = 'Correct! +10 XP and +10 coins.';
-            mathFeedback.className = 'text-sm text-emerald-400';
-            soundCorrect.currentTime = 0;
-            soundCorrect.play();
+            if (mathFeedback) {
+              mathFeedback.textContent = 'Correct! +10 XP and +10 coins.';
+              mathFeedback.className = 'text-sm text-emerald-400';
+            }
+            if (soundCorrect) { soundCorrect.currentTime = 0; soundCorrect.play(); }
             addCoins(10);
             addXP(10);
             launchConfetti();
 
-            // Automatically load next question after 1 second
             setTimeout(() => {
               generateMathQuestion(currentGrade);
             }, 1000);
-
           } else {
             let feedbackText = 'Oops, try again!';
             if (currentGrade === 6 && currentShapeType) {
@@ -599,12 +664,12 @@
               if (currentShapeType === 'triangle') feedbackText += ' Area of a triangle: A = ½ × b × h.';
             }
 
-            mathFeedback.textContent = feedbackText;
-            mathFeedback.className = 'text-sm text-pink-400';
-            soundWrong.currentTime = 0;
-            soundWrong.play();
+            if (mathFeedback) {
+              mathFeedback.textContent = feedbackText;
+              mathFeedback.className = 'text-sm text-pink-400';
+            }
+            if (soundWrong) { soundWrong.currentTime = 0; soundWrong.play(); }
 
-            // Load next question after 1.5 seconds
             setTimeout(() => {
               generateMathQuestion(currentGrade);
             }, 1500);
@@ -615,173 +680,149 @@
       });
     }
 
-    // SVG drawing helpers for Grade 6
     function drawCircleSvg() {
-      mathSvgContainer.innerHTML = `
-        <svg width="160" height="160">
-          <circle cx="80" cy="80" r="60" fill="none" stroke="white" stroke-width="8" />
-        </svg>
-      `;
+      if (mathSvgContainer) mathSvgContainer.innerHTML = `<svg width="160" height="160"><circle cx="80" cy="80" r="60" fill="none" stroke="white" stroke-width="8" /></svg>`;
     }
     function drawSquareSvg() {
-      mathSvgContainer.innerHTML = `
-        <svg width="160" height="160">
-          <rect x="30" y="30" width="100" height="100" fill="none" stroke="white" stroke-width="8" />
-        </svg>
-      `;
+      if (mathSvgContainer) mathSvgContainer.innerHTML = `<svg width="160" height="160"><rect x="30" y="30" width="100" height="100" fill="none" stroke="white" stroke-width="8" /></svg>`;
     }
     function drawRectangleSvg() {
-      mathSvgContainer.innerHTML = `
-        <svg width="200" height="140">
-          <rect x="20" y="30" width="160" height="80" fill="none" stroke="white" stroke-width="8" />
-        </svg>
-      `;
+      if (mathSvgContainer) mathSvgContainer.innerHTML = `<svg width="200" height="140"><rect x="20" y="30" width="160" height="80" fill="none" stroke="white" stroke-width="8" /></svg>`;
     }
     function drawRhombusSvg() {
-      mathSvgContainer.innerHTML = `
-        <svg width="200" height="160">
-          <polygon points="100,20 170,80 100,140 30,80" fill="none" stroke="white" stroke-width="8" />
-        </svg>
-      `;
+      if (mathSvgContainer) mathSvgContainer.innerHTML = `<svg width="200" height="160"><polygon points="100,20 170,80 100,140 30,80" fill="none" stroke="white" stroke-width="8" /></svg>`;
     }
     function drawTriangleSvg() {
-      mathSvgContainer.innerHTML = `
-        <svg width="200" height="160">
-          <polygon points="40,140 160,140 100,40" fill="none" stroke="white" stroke-width="8" />
-        </svg>
-      `;
+      if (mathSvgContainer) mathSvgContainer.innerHTML = `<svg width="200" height="160"><polygon points="40,140 160,140 100,40" fill="none" stroke="white" stroke-width="8" /></svg>`;
     }
 
-    document.getElementById('newMathQuestion').addEventListener('click', () => {
-      const grade = parseInt(mathGradeSelect.value, 10);
-      generateMathQuestion(grade);
-    });
-    generateMathQuestion(parseInt(mathGradeSelect.value, 10));
+    const newMathBtn = document.getElementById('newMathQuestion');
+    if (newMathBtn) {
+      newMathBtn.addEventListener('click', () => {
+        const grade = parseInt(mathGradeSelect.value, 10);
+        generateMathQuestion(grade);
+      });
+    }
+    if (mathGradeSelect) generateMathQuestion(parseInt(mathGradeSelect.value, 10));
 
-    // ELA logic (JS data)
-const elaLevelSelect = document.getElementById('elaLevel');
-const elaCitation = document.getElementById('elaCitation');
-const elaText = document.getElementById('elaText');
-const elaQuestionsDiv = document.getElementById('elaQuestions');
-const elaFeedback = document.getElementById('elaFeedback');
-let elaData = null;
+    // ELA logic
+    const elaLevelSelect = document.getElementById('elaLevel');
+    const elaCitation = document.getElementById('elaCitation');
+    const elaText = document.getElementById('elaText');
+    const elaQuestionsDiv = document.getElementById('elaQuestions');
+    const elaFeedback = document.getElementById('elaFeedback');
+    let elaData = null;
 
-function loadElaData() {
-  // Load once from window.ELA_DATA
-  if (!elaData) {
-    try {
-      if (!window.ELA_DATA) {
-        throw new Error("ELA_DATA is not defined. Make sure ela_data.js is loaded.");
+    function loadElaData() {
+      if (!elaData) {
+        try {
+          if (!window.ELA_DATA) {
+            throw new Error("ELA_DATA is not defined. Make sure ela_data.js is loaded.");
+          }
+          elaData = window.ELA_DATA;
+        } catch (e) {
+          console.error("ELA_DATA.JS Load Error:", e);
+          if (elaCitation) elaCitation.textContent = "Error loading ELA data.";
+          if (soundTimeUp) { soundTimeUp.currentTime = 0; soundTimeUp.play(); }
+          return;
+        }
       }
-      elaData = window.ELA_DATA;
-    } catch (e) {
-      console.error("ELA_DATA.JS Load Error:", e);
-      elaCitation.textContent = "Error loading ELA data.";
-      soundTimeUp.currentTime = 0;
-      soundTimeUp.play();
-      return;
+
+      const level = elaLevelSelect.value;
+      const levelArray = elaData[level];
+      if (!levelArray || levelArray.length === 0) {
+        if (elaCitation) elaCitation.textContent = "No data found for this level.";
+        return;
+      }
+      const entry = levelArray[Math.floor(Math.random() * levelArray.length)];
+
+      if (elaCitation) elaCitation.textContent = entry.citation;
+      if (elaText) elaText.textContent = entry.text;
+      if (elaQuestionsDiv) elaQuestionsDiv.innerHTML = "";
+      if (elaFeedback) elaFeedback.textContent = "";
+
+      entry.questions.forEach((q, idx) => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "bg-slate-900/70 border border-slate-700 rounded-xl p-3 space-y-2";
+
+        const qText = document.createElement("p");
+        qText.className = "text-sm font-semibold";
+        qText.textContent = `Q${idx + 1}. ${q.question}`;
+        wrapper.appendChild(qText);
+
+        const choicesDiv = document.createElement("div");
+        choicesDiv.className = "space-y-1";
+
+        q.choices.forEach((choice, cIdx) => {
+          const label = document.createElement("label");
+          label.className = "flex items-center gap-2 text-sm";
+
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = `ela-q-${idx}`;
+          input.value = cIdx;
+          input.className = "accent-cyan-400";
+
+          label.appendChild(input);
+          label.appendChild(document.createTextNode(choice));
+          choicesDiv.appendChild(label);
+        });
+
+        wrapper.appendChild(choicesDiv);
+        if (elaQuestionsDiv) elaQuestionsDiv.appendChild(wrapper);
+      });
+
+      const submitBtn = document.createElement("button");
+      submitBtn.textContent = "Submit Answers";
+      submitBtn.className = "btn-glow mt-2 px-3 py-2 rounded-lg bg-violet-800 text-white-900 font-semibold";
+      submitBtn.addEventListener('click', () => {
+        document.querySelectorAll('#elaQuestions input[type="radio"]').forEach(r => {
+          r.disabled = true;
+        });
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+        let correctCount = 0;
+        entry.questions.forEach((q, idx) => {
+          const selected = document.querySelector(`input[name="ela-q-${idx}"]:checked`);
+          if (selected && parseInt(selected.value, 10) === q.correctIndex) {
+            correctCount++;
+          }
+        });
+
+        if (correctCount === entry.questions.length) {
+          if (elaFeedback) {
+            elaFeedback.textContent = `Perfect! You got all ${correctCount} correct. +30 XP and +30 coins.`;
+            elaFeedback.className = 'text-sm text-emerald-400';
+          }
+          if (soundCorrect) { soundCorrect.currentTime = 0; soundCorrect.play(); }
+          addCoins(30);
+          addXP(30);
+          launchConfetti();
+
+          setTimeout(() => {
+            loadElaData();
+          }, 1500);
+        } else {
+          if (elaFeedback) {
+            elaFeedback.textContent = `You got ${correctCount} out of ${entry.questions.length} correct. Try again!`;
+            elaFeedback.className = 'text-sm text-pink-400';
+          }
+          if (soundWrong) { soundWrong.currentTime = 0; soundWrong.play(); }
+
+          setTimeout(() => {
+            loadElaData();
+          }, 2000);
+        }
+      });
+
+      if (elaQuestionsDiv) elaQuestionsDiv.appendChild(submitBtn);
     }
-  }
 
-  const level = elaLevelSelect.value;
-  const levelArray = elaData[level];
-  if (!levelArray || levelArray.length === 0) {
-    elaCitation.textContent = "No data found for this level.";
-    return;
-  }
-  const entry = levelArray[Math.floor(Math.random() * levelArray.length)];
+    const loadElaBtn = document.getElementById("loadEla");
+    if (loadElaBtn) loadElaBtn.addEventListener("click", loadElaData);
 
-
-  elaCitation.textContent = entry.citation;
-  elaText.textContent = entry.text;
-  elaQuestionsDiv.innerHTML = "";
-  elaFeedback.textContent = "";
-
-  entry.questions.forEach((q, idx) => {
-    const wrapper = document.createElement("div");
-    wrapper.className = "bg-slate-900/70 border border-slate-700 rounded-xl p-3 space-y-2";
-
-    const qText = document.createElement("p");
-    qText.className = "text-sm font-semibold";
-    qText.textContent = `Q${idx + 1}. ${q.question}`;
-    wrapper.appendChild(qText);
-
-    const choicesDiv = document.createElement("div");
-    choicesDiv.className = "space-y-1";
-
-    q.choices.forEach((choice, cIdx) => {
-      const label = document.createElement("label");
-      label.className = "flex items-center gap-2 text-sm";
-
-      const input = document.createElement("input");
-      input.type = "radio";
-      input.name = `ela-q-${idx}`;
-      input.value = cIdx;
-      input.className = "accent-cyan-400";
-
-      label.appendChild(input);
-      label.appendChild(document.createTextNode(choice));
-      choicesDiv.appendChild(label);
-    });
-
-    wrapper.appendChild(choicesDiv);
-    elaQuestionsDiv.appendChild(wrapper);
-  });
-
-  const submitBtn = document.createElement("button");
-  submitBtn.textContent = "Submit Answers";
-  submitBtn.className =
-    "btn-glow mt-2 px-3 py-2 rounded-lg bg-violet-800 text-white-900 font-semibold";
-  submitBtn.addEventListener('click', () => {
-  // Disable all radio inputs immediately to prevent repeat clicks
-  document.querySelectorAll('#elaQuestions input[type="radio"]').forEach(r => {
-    r.disabled = true;
-  });
-  submitBtn.disabled = true;
-  submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
-
-  let correctCount = 0;
-  entry.questions.forEach((q, idx) => {
-    const selected = document.querySelector(`input[name="ela-q-${idx}"]:checked`);
-    if (selected && parseInt(selected.value, 10) === q.correctIndex) {
-      correctCount++;
-    }
-  });
-
-  if (correctCount === entry.questions.length) {
-    elaFeedback.textContent = `Perfect! You got all ${correctCount} correct. +30 XP and +30 coins.`;
-    elaFeedback.className = 'text-sm text-emerald-400';
-    soundCorrect.currentTime = 0;
-    soundCorrect.play();
-    addCoins(30);
-    addXP(30);
-    launchConfetti();
-
-    // Load next reading set after 1.5 seconds
-    setTimeout(() => {
-      loadElaData();
-    }, 1500);
-  } else {
-    elaFeedback.textContent = `You got ${correctCount} out of ${entry.questions.length} correct. Try again!`;
-    elaFeedback.className = 'text-sm text-pink-400';
-    soundWrong.currentTime = 0;
-    soundWrong.play();
-
-    // Load next reading set after 2 seconds
-    setTimeout(() => {
-      loadElaData();
-    }, 2000);
-  }
-});
-
-
-  elaQuestionsDiv.appendChild(submitBtn);
-}
-
-document.getElementById("loadEla").addEventListener("click", loadElaData);
-
-
-    // Games logic with iframe + timer
+    // Games logic
     const gameContainer = document.getElementById('gameContainer');
     const gameFrame = document.getElementById('gameFrame');
     const gameTimerDisplay = document.getElementById('gameTimer');
@@ -789,9 +830,10 @@ document.getElementById("loadEla").addEventListener("click", loadElaData);
     let gameTimeLeft = 0;
 
     function startGameSession(url) {
+      if (!gameFrame || !gameContainer) return;
       gameFrame.src = url;
       gameContainer.classList.remove('hidden');
-      gameTimeLeft = 180; // 3 minutes
+      gameTimeLeft = 180;
       updateGameTimerDisplay();
       if (gameInterval) clearInterval(gameInterval);
       gameInterval = setInterval(() => {
@@ -806,16 +848,17 @@ document.getElementById("loadEla").addEventListener("click", loadElaData);
     }
 
     function updateGameTimerDisplay() {
+      if (!gameTimerDisplay) return;
       const minutes = String(Math.floor(gameTimeLeft / 60)).padStart(2, '0');
       const seconds = String(gameTimeLeft % 60).padStart(2, '0');
       gameTimerDisplay.textContent = `${minutes}:${seconds}`;
     }
 
     function endGameSession() {
+      if (!gameFrame || !gameContainer) return;
       gameFrame.src = '';
       gameContainer.classList.add('hidden');
-      soundTimeUp.currentTime = 0;
-      soundTimeUp.play();
+      if (soundTimeUp) { soundTimeUp.currentTime = 0; soundTimeUp.play(); }
       alert('Time is up! Your 3‑minute game session has ended.');
     }
 
@@ -825,25 +868,181 @@ document.getElementById("loadEla").addEventListener("click", loadElaData);
         const url = btn.dataset.url;
         if (coins >= cost) {
           coins -= cost;
-          localStorage.setItem('coins', coins);
-          coinDisplay.textContent = coins;
+          updateCoinDisplay();
           startGameSession(url);
         } else {
           alert(`You need ${cost} coins to play this game. Keep learning!`);
-          soundTimeUp.currentTime = 0;
-          soundTimeUp.play();
+          if (soundTimeUp) { soundTimeUp.currentTime = 0; soundTimeUp.play(); }
         }
       });
     });
 
-    //--Button Click Sound Effect--//
+    // Profile Logic
+    let profileData = JSON.parse(localStorage.getItem("profileData")) || {
+      ownedCharacters: [0],
+      ownedPets: [0],
+      equippedCharacter: 0,
+      equippedPet: 0
+    };
+
+    let charIndex = profileData.equippedCharacter || 0;
+    let petIndex = profileData.equippedPet || 0;
+
+    function coinText(amount) {
+      return `<img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins"> ${amount}`;
+    }
+
+    const characters = [
+      { img: "https://s.namemc.com/3d/skin/body.png?id=59e3a240bd150317&model=classic&width=308&height=308", costCoins: 50 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=0a3d3713162bbd83&model=slim&width=384&height=384", costCoins: 50 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=c28178aaaa2d79d5&model=slim&width=384&height=384", costCoins: 250 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=a5a3aa14a8018dae&model=slim&width=384&height=384", costCoins: 250 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=7dbf7205f0c3c386&model=slim&width=384&height=384", costCoins: 300 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=48458b73d1075c60&model=classic&width=384&height=384", costCoins: 400 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=624142dff6423d90&model=slim&width=384&height=384", costCoins: 500 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=bc7db647674d1f01&model=slim&width=384&height=384", costCoins: 600 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=d67bfc49e01dee34&model=classic&width=384&height=384", costCoins: 700 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=ea1a7775df5bf232&model=classic&width=384&height=384", costCoins: 800 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=9444a61abb22276f&model=classic&width=384&height=384", costCoins: 900 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=8b92dc4ea510206a&model=classic&width=384&height=384", costCoins: 1000 }
+    ];
+
+    const pets = [
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/79/Baby_Calico_Cat.png", costCoins: 100 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a8/Baby_Jellie_Cat.png", costCoins: 150 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b4/Baby_Persian_Cat.png", costCoins: 200 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/68/Baby_Red_Cat.png", costCoins: 250 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/44/Baby_Siamese_Cat.png", costCoins: 300 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/49/Baby_Tabby_Cat.png", costCoins: 350 }
+    ];
+
+    function saveProfile() {
+      localStorage.setItem("profileData", JSON.stringify(profileData));
+    }
+
+    function updateUI() {
+      const characterPreview = document.getElementById("characterPreview");
+      const characterCost = document.getElementById("characterCost");
+      const characterButton = document.getElementById("characterButton");
+
+      const petPreview = document.getElementById("petPreview");
+      const petCost = document.getElementById("petCost");
+      const petButton = document.getElementById("petButton");
+
+      if (!characterPreview || !petPreview) return;
+
+      characterPreview.src = characters[charIndex].img;
+
+      if (profileData.ownedCharacters.includes(charIndex)) {
+        characterCost.innerHTML = "Owned";
+        characterButton.textContent = "EQUIP";
+        characterButton.className = "btn-glow px-6 py-2 bg-blue-500 text-white font-bold rounded-lg";
+      } else {
+        characterCost.innerHTML = coinText(characters[charIndex].costCoins);
+        characterButton.textContent = "BUY";
+        characterButton.className = "btn-glow px-6 py-2 bg-yellow-500 text-black font-bold rounded-lg";
+      }
+
+      petPreview.src = pets[petIndex].img;
+
+      if (profileData.ownedPets.includes(petIndex)) {
+        petCost.innerHTML = "Owned";
+        petButton.textContent = "EQUIP";
+        petButton.className = "btn-glow px-6 py-2 bg-blue-500 text-white font-bold rounded-lg";
+      } else {
+        petCost.innerHTML = coinText(pets[petIndex].costCoins);
+        petButton.textContent = "BUY";
+        petButton.className = "btn-glow px-6 py-2 bg-green-500 text-white font-bold rounded-lg";
+      }
+    }
+
+    window.switchCharacter = function(dir) {
+      charIndex = (charIndex + dir + characters.length) % characters.length;
+      updateUI();
+    };
+
+    window.switchPet = function(dir) {
+      petIndex = (petIndex + dir + pets.length) % pets.length;
+      updateUI();
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const characterButton = document.getElementById("characterButton");
+      const petButton = document.getElementById("petButton");
+
+      if (characterButton) {
+        characterButton.onclick = () => {
+          if (!profileData.ownedCharacters.includes(charIndex)) {
+            const item = characters[charIndex];
+            if (coins < item.costCoins) return alert("Not enough coins!");
+
+            coins -= item.costCoins;
+            updateCoinDisplay();
+            profileData.ownedCharacters.push(charIndex);
+            launchConfetti();
+          }
+
+          profileData.equippedCharacter = charIndex;
+          saveProfile();
+          updateUI();
+        };
+      }
+
+      if (petButton) {
+        petButton.onclick = () => {
+          if (!profileData.ownedPets.includes(petIndex)) {
+            const item = pets[petIndex];
+            if (coins < item.costCoins) return alert("Not enough coins!");
+
+            coins -= item.costCoins;
+            updateCoinDisplay();
+            profileData.ownedPets.push(petIndex);
+            launchConfetti();
+          }
+
+          profileData.equippedPet = petIndex;
+          saveProfile();
+          updateUI();
+        };
+      }
+
+      updateUI();
+    });
+
+    // Sound effect on click
     const clickSound = document.getElementById('btnClickSound');
     document.addEventListener('click', (e) => {
       if (e.target.tagName === 'BUTTON') {
-        clickSound.currentTime = 0;
-        clickSound.play();
+        if (clickSound) {
+          clickSound.currentTime = 0;
+          clickSound.play().catch(() => {});
+        }
       }
     });
-  </script>
+
+    // Global Reset Progress Function
+    window.resetProgress = function() {
+      if (!confirm("Are you sure you want to reset all profile progress?")) return;
+
+      profileData = {
+        ownedCharacters: [],
+        ownedPets: [],
+        equippedCharacter: 0,
+        equippedPet: 0
+      };
+
+      charIndex = 0;
+      petIndex = 0;
+      saveProfile();
+
+      xp = 0;
+      coins = 0;
+      updateXPDisplay();
+      updateCoinDisplay();
+
+      updateUI();
+      launchConfetti();
+    };
+</script>
 </body>
 </html>
