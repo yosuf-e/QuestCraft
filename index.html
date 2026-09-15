@@ -1,3 +1,4 @@
+
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
@@ -44,6 +45,29 @@
     50%  { opacity: 0.55; }
     100% { opacity: 0.35; }
   }
+
+  .btn-rainbow {
+  background: linear-gradient(
+    155deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #9400d3
+  );
+  background-size: 150%;
+  color: white;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.btn-glow:hover {
+    box-shadow: 0 0 12px rgba(254, 254, 254, 0.217);
+    transform: scale(1.02); /* Scales the card up by 2% */
+    transition: all 0.2s ease;
+  }
 </style>
 
 </head>
@@ -52,12 +76,13 @@
 
   <!-- Top Nav -->
   <nav class="bg-slate-800 border-b border-slate-700 px-4 py-3 flex items-center gap-4 text-sm font-semibold">
-  <button><img src="https://github.com/yosuf-e/BrainQuest/blob/main/BrainQuest%20Logo.png?raw=true"
-    style="height: 40px; width:40px; border-radius: 20%;" class="page-link" data-page="home" alt="Logo"></button>
-
-    <button data-page="math" class="page-link">Math</button>
-    <button data-page="ela" class="page-link">ELA</button>
-    <button data-page="games" class="page-link">Games</button>
+  <button class="btn-glow page-link" data-page="home">
+  <img src="https://github.com/yosuf-e/BrainQuest/blob/main/BrainQuest%20Logo.png?raw=true" style="height: 40px; width:40px; border-radius: 20%; pointer-events: none;">
+</button>
+    <button style="border-radius: 15%;" data-page="math" class="page-link btn-glow">Math</button>
+    <button style="border-radius: 15%;" data-page="ela" class="page-link btn-glow">ELA</button>
+    <button style="border-radius: 15%;" data-page="games" class="page-link btn-glow">Games</button>
+    <button style="border-radius: 15%;" data-page="profile" class="page-link btn-glow">Profile (Beta)</button>
     <span class="ml-auto flex items-center gap-4 text-xs">
       <span class="flex items-center gap-1">
         <img src="https://cdn-icons-png.flaticon.com/128/8727/8727031.png" alt="XP" class="w-4 h-4">
@@ -89,7 +114,7 @@
             Grade‑based topics from visual apples to geometry with shapes.
           </p>
           <button data-page="math"
-                  class="page-link mt-2 px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold w-full">
+                  class="btn-glow page-link mt-2 px-3 py-2 rounded-lg bg-red-400 text-slate-900 font-semibold w-full">
             Start Math
           </button>
         </div>
@@ -99,7 +124,7 @@
           <h2 class="text-xl font-semibold">ELA Quests</h2>
           <p class="text-sm text-slate-300">Reading passages with MCQs.</p>
           <button data-page="ela"
-                  class="page-link mt-2 px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold w-full">
+                  class="btn-glow page-link mt-2 px-3 py-2 rounded-lg bg-blue-400 text-slate-900 font-semibold w-full">
             Start ELA
           </button>
         </div>
@@ -109,7 +134,7 @@
           <h2 class="text-xl font-semibold">Games Arcade</h2>
           <p class="text-sm text-slate-300">Play inside the page with a 3‑minute timer.</p>
           <button data-page="games"
-                  class="page-link mt-2 px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold w-full">
+                  class="btn-glow page-link mt-2 px-3 py-2 rounded-lg bg-yellow-400 text-slate-900 font-semibold w-full">
             Open Arcade
           </button>
         </div>
@@ -117,10 +142,10 @@
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
           <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="Profile-Icon" style="height: 40px; width: 40px;">
           <h2 class="text-xl font-semibold">Profile Customization</h2>
-          <p class="text-sm text-slate-300">😁 COMING SOON!</p>
-          <button data-page=""
-                  class="page-link mt-2 px-3 py-2 rounded-lg bg-slate-600 text-slate-900 font-semibold w-full">
-            ⚡ COMING SOON ⚡
+          <p class="text-sm text-slate-300">Customize Your Shirt, Pants, Hair, and Face!</p>
+          <button data-page="profile"
+                  class="btn-glow page-link mt-2 px-3 py-2 rounded-lg text-slate-900 font-semibold w-full btn-rainbow">
+            🚨 Beta Version
           </button>
         </div>
       </div>
@@ -142,7 +167,7 @@
         </select>
 
         <button id="newMathQuestion"
-          class="mt-2 px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold w-full">
+          class="btn-glow mt-2 px-3 py-2 rounded-lg bg-red-400 text-slate-900 font-semibold w-full">
           New Math Question
         </button>
 
@@ -169,7 +194,7 @@
         </select>
 
         <button id="loadEla"
-          class="mt-2 px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold w-full">
+          class="btn-glow mt-2 px-3 py-2 rounded-lg bg-blue-400 text-slate-900 font-semibold w-full">
           Load Reading & Questions
         </button>
 
@@ -204,7 +229,7 @@
           <img src="https://imgs.crazygames.com/smash-karts_1x1/20260210123937/smash-karts_1x1-cover?format=auto&quality=100&metadata=none&width=1200"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">Smash Karts</h3>
-          <button class="open-game px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold w-full"
+          <button class="btn-glow open-game px-3 py-2 rounded-lg bg-blue-400 text-slate-900 font-semibold w-full"
                   data-url="https://smashkarts.io/" data-cost="130">
             Play 3‑Mins (
             <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
@@ -217,7 +242,7 @@
           <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=188,height=188,fit=cover,f=auto/94f0d123275fb73da13aaed4a2725184/adventure-logo.png"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">Adventure Game</h3>
-          <button class="open-game px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold w-full"
+          <button class="btn-glow open-game px-3 py-2 rounded-lg bg-yellow-400 text-slate-900 font-semibold w-full"
                   data-url="https://vectaria.io/" data-cost="90">
             Play 3‑Mins (
             <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
@@ -230,7 +255,7 @@
           <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=1200,height=1200,fit=cover,f=png/1c920b9279c2bedec567c1b58129ae8f/subway-surfers-logo.png"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">Subway Surfers Game</h3>
-          <button class="open-game px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold w-full"
+          <button class="btn-glow open-game px-3 py-2 rounded-lg bg-red-400 text-slate-900 font-semibold w-full"
                   data-url="https://running-games.io/subway-run" data-cost="150">
             Play 3‑Mins (
             <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
@@ -243,7 +268,7 @@
           <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/TempleRun.jpg"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">Temple Run Game</h3>
-          <button class="open-game px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold w-full"
+          <button class="btn-glow open-game px-3 py-2 rounded-lg bg-blue-400 text-slate-900 font-semibold w-full"
                   data-url="https://temple-run.com/" data-cost="150">
             Play 3‑Mins (
             <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
@@ -256,7 +281,7 @@
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk7e0y5fGlmD5aNGyyX6AF7P-fJFyg6RS1LiS2Kk6X4WW_qZeyZR4HHkBQfe1AZsU31_mUrqcq2nYH2djKAiBgbchq-YofK0CX8IBT&s=10"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">Fire Boy & Water Girl Game</h3>
-          <button class="open-game px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold w-full"
+          <button class="btn-glow open-game px-3 py-2 rounded-lg bg-yellow-400 text-slate-900 font-semibold w-full"
                   data-url="https://www.fireboynwatergirl.com/?p=game&id=1" data-cost="120">
             Play 3‑Mins (
             <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
@@ -269,7 +294,7 @@
           <img src="https://imgs.crazygames.com/worldguessr_1x1/20241018082521/worldguessr_1x1-cover?format=auto&quality=100&metadata=none&width=1200"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">World Guessr Game</h3>
-          <button class="open-game px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold w-full"
+          <button class="btn-glow open-game px-3 py-2 rounded-lg bg-red-400 text-slate-900 font-semibold w-full"
                   data-url="https://www.worldguessr.com/" data-cost="80">
             Play 3‑Mins (
             <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
@@ -302,7 +327,9 @@
   <audio id="soundTimeUp">
     <source src="https://cdn.pixabay.com/audio/2024/10/10/audio_7c1f7894bd.mp3" type="audio/ogg">
   </audio>
-
+  <audio id="btnClickSound" 
+  src="https://www.myinstants.com/media/sounds/minecraft_click.mp3">
+</audio>
   <audio id="bgMusic" 
   src="https://cdn.pixabay.com/audio/2025/12/21/audio_3831917328.mp3" loop>
   </audio>
@@ -311,7 +338,7 @@
     // BG Music
     window.addEventListener('DOMContentLoaded', () => {
   const bgMusic = document.getElementById('bgMusic');
-  bgMusic.volume = 0.08; // 8% volume
+  bgMusic.volume = 0.05; // 5% volume
   bgMusic.play().catch(() => {
     // Browser blocked autoplay — user must interact first
     document.body.addEventListener('click', () => {
@@ -592,35 +619,35 @@
     function drawCircleSvg() {
       mathSvgContainer.innerHTML = `
         <svg width="160" height="160">
-          <circle cx="80" cy="80" r="60" fill="none" stroke="white" stroke-width="4" />
+          <circle cx="80" cy="80" r="60" fill="none" stroke="white" stroke-width="8" />
         </svg>
       `;
     }
     function drawSquareSvg() {
       mathSvgContainer.innerHTML = `
         <svg width="160" height="160">
-          <rect x="30" y="30" width="100" height="100" fill="none" stroke="white" stroke-width="4" />
+          <rect x="30" y="30" width="100" height="100" fill="none" stroke="white" stroke-width="8" />
         </svg>
       `;
     }
     function drawRectangleSvg() {
       mathSvgContainer.innerHTML = `
         <svg width="200" height="140">
-          <rect x="20" y="30" width="160" height="80" fill="none" stroke="white" stroke-width="4" />
+          <rect x="20" y="30" width="160" height="80" fill="none" stroke="white" stroke-width="8" />
         </svg>
       `;
     }
     function drawRhombusSvg() {
       mathSvgContainer.innerHTML = `
         <svg width="200" height="160">
-          <polygon points="100,20 170,80 100,140 30,80" fill="none" stroke="white" stroke-width="4" />
+          <polygon points="100,20 170,80 100,140 30,80" fill="none" stroke="white" stroke-width="8" />
         </svg>
       `;
     }
     function drawTriangleSvg() {
       mathSvgContainer.innerHTML = `
         <svg width="200" height="160">
-          <polygon points="40,140 160,140 100,40" fill="none" stroke="white" stroke-width="4" />
+          <polygon points="40,140 160,140 100,40" fill="none" stroke="white" stroke-width="8" />
         </svg>
       `;
     }
@@ -648,7 +675,7 @@ function loadElaData() {
       }
       elaData = window.ELA_DATA;
     } catch (e) {
-      console.error("ELA JSON Load Error:", e);
+      console.error("ELA_DATA.JS Load Error:", e);
       elaCitation.textContent = "Error loading ELA data.";
       soundTimeUp.currentTime = 0;
       soundTimeUp.play();
@@ -704,7 +731,7 @@ function loadElaData() {
   const submitBtn = document.createElement("button");
   submitBtn.textContent = "Submit Answers";
   submitBtn.className =
-    "mt-2 px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold";
+    "btn-glow mt-2 px-3 py-2 rounded-lg bg-violet-800 text-white-900 font-semibold";
   submitBtn.addEventListener('click', () => {
   // Disable all radio inputs immediately to prevent repeat clicks
   document.querySelectorAll('#elaQuestions input[type="radio"]').forEach(r => {
@@ -807,6 +834,15 @@ document.getElementById("loadEla").addEventListener("click", loadElaData);
           soundTimeUp.play();
         }
       });
+    });
+
+    //--Button Click Sound Effect--//
+    const clickSound = document.getElementById('btnClickSound');
+    document.addEventListener('click', (e) => {
+      if (e.target.tagName === 'BUTTON') {
+        clickSound.currentTime = 0;
+        clickSound.play();
+      }
     });
   </script>
 </body>
