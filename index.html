@@ -138,7 +138,7 @@
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
           <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="Profile-Icon" style="height: 40px; width: 40px;">
           <h2 class="text-xl font-semibold">Profile Customization</h2>
-          <p class="text-sm text-slate-300">Chose Your Avatar & Pet, Or Just Restart!</p>
+          <p class="text-sm text-slate-300">Choose your avatar, pet, or just restart!</p>
           <button data-page="profile"
                   class="btn-glow page-link mt-2 px-3 py-2 rounded-lg text-slate-900 font-semibold w-full btn-rainbow">
             🚨 Beta Version
@@ -893,27 +893,33 @@
     }
 
     const characters = [
-      { img: "https://s.namemc.com/3d/skin/body.png?id=59e3a240bd150317&model=classic&width=308&height=308", costCoins: 50 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=0a3d3713162bbd83&model=slim&width=384&height=384", costCoins: 50 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=c28178aaaa2d79d5&model=slim&width=384&height=384", costCoins: 250 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=a5a3aa14a8018dae&model=slim&width=384&height=384", costCoins: 250 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=7dbf7205f0c3c386&model=slim&width=384&height=384", costCoins: 300 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=48458b73d1075c60&model=classic&width=384&height=384", costCoins: 400 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=624142dff6423d90&model=slim&width=384&height=384", costCoins: 500 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=bc7db647674d1f01&model=slim&width=384&height=384", costCoins: 600 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=d67bfc49e01dee34&model=classic&width=384&height=384", costCoins: 700 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=ea1a7775df5bf232&model=classic&width=384&height=384", costCoins: 800 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=9444a61abb22276f&model=classic&width=384&height=384", costCoins: 900 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=8b92dc4ea510206a&model=classic&width=384&height=384", costCoins: 1000 }
+      { img: "https://s.namemc.com/3d/skin/body.png?id=59e3a240bd150317&model=classic&width=308&height=308", costCoins: 20 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=0a3d3713162bbd83&model=slim&width=384&height=384", costCoins: 20 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=c28178aaaa2d79d5&model=slim&width=384&height=384", costCoins: 150 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=a5a3aa14a8018dae&model=slim&width=384&height=384", costCoins: 150 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=7dbf7205f0c3c386&model=slim&width=384&height=384", costCoins: 200 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=48458b73d1075c60&model=classic&width=384&height=384", costCoins: 300 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=624142dff6423d90&model=slim&width=384&height=384", costCoins: 400 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=bc7db647674d1f01&model=slim&width=384&height=384", costCoins: 500 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=d67bfc49e01dee34&model=classic&width=384&height=384", costCoins: 600 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=ea1a7775df5bf232&model=classic&width=384&height=384", costCoins: 700 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=9444a61abb22276f&model=classic&width=384&height=384", costCoins: 800 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=8b92dc4ea510206a&model=classic&width=384&height=384", costCoins: 900 },
     ];
 
     const pets = [
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/79/Baby_Calico_Cat.png", costCoins: 100 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a8/Baby_Jellie_Cat.png", costCoins: 150 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b4/Baby_Persian_Cat.png", costCoins: 200 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/68/Baby_Red_Cat.png", costCoins: 250 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/44/Baby_Siamese_Cat.png", costCoins: 300 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/49/Baby_Tabby_Cat.png", costCoins: 350 }
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/79/Baby_Calico_Cat.png", costCoins: 50 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a8/Baby_Jellie_Cat.png", costCoins: 100 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b4/Baby_Persian_Cat.png", costCoins: 150 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/68/Baby_Red_Cat.png", costCoins: 200 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/44/Baby_Siamese_Cat.png", costCoins: 250 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/49/Baby_Tabby_Cat.png", costCoins: 300 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4c/Baby_Wolf_JE3_BE3.png/revision/latest?cb=20260919174824", costCoins: 50 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a9/Woods_Wolf.png/revision/latest?cb=20260919173301", costCoins: 100 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/cf/Ashen_Wolf.png/revision/latest?cb=20260919173411", costCoins: 150 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/6f/Rusty_Wolf.png/revision/latest?cb=20260919173748", costCoins: 200 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/9e/Spotted_Wolf.png/revision/latest?cb=20260919174050", costCoins: 250 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/8/82/Wolf_shaking.gif/revision/latest?cb=20210212005440", costCoins: 500 },
     ];
 
     function saveProfile() {
