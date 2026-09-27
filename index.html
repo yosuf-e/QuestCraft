@@ -10,6 +10,154 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="ela_data.js"></script>
   <style>
+  /* ---------- Splash overlay that reuses your animated gradient ---------- */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  pointer-events: auto;
+  transition: opacity 400ms ease, visibility 400ms ease;
+  opacity: 1;
+  visibility: visible;
+  background: #4B5462;
+}
+
+/* Inner container uses your .card look but tuned for splash */
+.splash-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 28px;
+  border-radius: 5%;
+  background: linear-gradient(180deg, rgba(30,35,42,0.95), rgba(20,24,28,0.9));
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  transform: translateY(0);
+  max-width: min(420px, calc(100% - 48px));
+  width: 75%;
+  text-align: center;
+}
+
+/* Profile area */
+.profile-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Photo container */
+.profile-photo {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  border-radius: 15%;
+  overflow: hidden;
+  border: 3px solid rgba(72,202,228,0.12);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  display: grid;
+  place-items: center;
+}
+
+/* Image fits the circle */
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: translateZ(0);
+}
+
+/* Shine effect (pseudo-element) */
+.profile-photo::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -120%;
+  width: 60%;
+  height: 220%;
+  transform: rotate(30deg) translateX(0);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255,255,255,0) 100%);
+  filter: blur(6px);
+  opacity: 0.0;
+  pointer-events: none;
+  animation: shineSweep 1.5s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+/* Shine Animation */
+@keyframes shineSweep {
+  0% {
+    left: -120%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.25;
+  }
+  45% {
+    left: 120%;
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.25;
+  }
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
+}
+
+/* Title under photo */
+.splash-title {
+  margin: 0;
+  font-size: 28px;
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: -0.2px;
+}
+
+/* Loading dots container */
+.loading-dots {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+/* Individual dots */
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #2382e8, #2ecbe8);
+  opacity: 0.25;
+  transform: translateY(0);
+  animation: dotPulse 1s infinite ease-in-out;
+}
+
+/* Staggered delays */
+.dot-1 { animation-delay: 0s; }
+.dot-2 { animation-delay: 0.15s; }
+.dot-3 { animation-delay: 0.3s; }
+
+@keyframes dotPulse {
+  0% { transform: translateY(0); opacity: 0.25; }
+  30% { transform: translateY(-8px); opacity: 1; }
+  60% { transform: translateY(0); opacity: 0.6; }
+  100% { transform: translateY(0); opacity: 0.25; }
+}
+
+/* Fade-out state */
+.splash.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+} 
+
   /* Full-resolution Minecraft sky background */
   .minecraft-sky-full {
     background-image: url("https://lh3.googleusercontent.com/EPjhUT5GzcG6lFWfi8lsNFNc-F4ZbjxSxtznwvsrzRnvUmhAFZfpH9oLib4wyrOuj_wevmTQMl9bmOMkJ6Vo54AacV8UaiKkLAyFMXc2l6IGBhromjMnNlW3iNfeO2itxqNkAynV");
@@ -67,8 +215,24 @@
 </style>
 
 </head>
-<body class="minecraft-sky-full text-slate-100 min-h-screen">
+<!-- Splash Screen -->
+<div id="splash" class="splash" role="status" aria-live="polite" aria-label="Loading">
+  <div class="splash-inner animate-in" role="presentation">
+    <div class="profile-wrap">
+      <div class="profile-photo" id="profilePhoto">
+        <img src="https://github.com/yosuf-e/BrainQuest/blob/main/BrainQuest%20Logo.png?raw=true" alt="Website-Logo" draggable="false"/>
+      </div>
+      <h1 class="splash-title">Welcome!</h1>
+    </div>
+    <div class="loading-dots" aria-hidden="true">
+      <span class="dot dot-1"></span>
+      <span class="dot dot-2"></span>
+      <span class="dot dot-3"></span>
+    </div>
+  </div>
+</div>
 
+<body class="minecraft-sky-full text-slate-100 min-h-screen">
 
   <!-- Top Nav -->
   <nav class="bg-slate-800 border-b border-slate-700 px-4 py-3 flex items-center gap-4 text-sm font-semibold">
@@ -914,11 +1078,6 @@
       { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/68/Baby_Red_Cat.png", costCoins: 200 },
       { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/44/Baby_Siamese_Cat.png", costCoins: 250 },
       { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/49/Baby_Tabby_Cat.png", costCoins: 300 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4c/Baby_Wolf_JE3_BE3.png/revision/latest?cb=20260919174824", costCoins: 50 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a9/Woods_Wolf.png/revision/latest?cb=20260919173301", costCoins: 100 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/cf/Ashen_Wolf.png/revision/latest?cb=20260919173411", costCoins: 150 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/6f/Rusty_Wolf.png/revision/latest?cb=20260919173748", costCoins: 200 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/9e/Spotted_Wolf.png/revision/latest?cb=20260919174050", costCoins: 250 },
       { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/8/82/Wolf_shaking.gif/revision/latest?cb=20210212005440", costCoins: 500 },
     ];
 
@@ -1049,6 +1208,31 @@
       updateUI();
       launchConfetti();
     };
+
+
+    // Splash Screen Logic // 
+      (function () {
+    const splash = document.getElementById('splash');
+    if (!splash) return;
+
+    // Public function to hide splash with smooth fade
+    window.hideSplash = function (delay = 300) {
+      if (!splash) return;
+      setTimeout(() => {
+        splash.classList.add('hidden');
+        setTimeout(() => {
+          if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+        }, 500);
+      }, delay);
+    };
+
+    // Auto-hide when window load fires
+    window.addEventListener('load', function () {
+      setTimeout(() => {
+        window.hideSplash(200);
+      }, 1500); // 7.5 Seconds
+    });
+  })();
 </script>
 </body>
 </html>
