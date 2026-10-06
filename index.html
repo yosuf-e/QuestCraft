@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <title>QuestCraft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="https://github.com/yosuf-e/QuestCraft/blob/main/Image%20Assets/QuestCraft%20Logo.png?raw=true">
-  <link rel="apple-touch-icon" href="https://github.com/yosuf-e/QuestCraft/blob/main/Image%20Assets/QuestCraft%20Logo.png?raw=true">
+  <link rel="icon" type="image/png" href="Image Assets/QuestCraft Logo.png">
+  <link rel="apple-touch-icon" href="Image Assets/QuestCraft Logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="ela_data.js"></script>
@@ -160,7 +160,7 @@
 
   /* Full-resolution Minecraft sky background */
   .minecraft-sky-full {
-    background-image: url("https://lh3.googleusercontent.com/EPjhUT5GzcG6lFWfi8lsNFNc-F4ZbjxSxtznwvsrzRnvUmhAFZfpH9oLib4wyrOuj_wevmTQMl9bmOMkJ6Vo54AacV8UaiKkLAyFMXc2l6IGBhromjMnNlW3iNfeO2itxqNkAynV");
+    background-image: url("Image Assets/Background.jpg");
     background-size: cover;        /* keep full resolution */
     background-position: center;   /* keep centered */
     background-repeat: no-repeat;  /* no tiling */
@@ -210,7 +210,8 @@
 .btn-glow:hover {
     box-shadow: 0 0 12px rgba(254, 254, 254, 0.217);
     transform: scale(1.02); /* Scales the card up by 2% */
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-in-out;
+    border-radius: 10px;
   }
 </style>
 
@@ -220,7 +221,7 @@
   <div class="splash-inner animate-in" role="presentation">
     <div class="profile-wrap">
       <div class="profile-photo" id="profilePhoto">
-        <img src="https://github.com/yosuf-e/QuestCraft/blob/main/Image%20Assets/QuestCraft%20Logo.png?raw=true" alt="Website-Logo" draggable="false"/>
+        <img src="Image Assets/QuestCraft Logo.png" alt="Website-Logo" draggable="false"/>
       </div>
       <h1 class="splash-title">Welcome!</h1>
     </div>
@@ -237,7 +238,7 @@
   <!-- Top Nav -->
   <nav class="bg-slate-800 border-b border-slate-700 px-4 py-3 flex items-center gap-4 text-sm font-semibold">
   <button class="btn-glow page-link" data-page="home">
-  <img src="https://github.com/yosuf-e/QuestCraft/blob/main/Image%20Assets/QuestCraft%20Logo.png?raw=true" style="height: 40px; width:40px; border-radius: 20%; pointer-events: none;">
+  <img src="Image Assets/QuestCraft Logo.png" style="height: 40px; width:40px; border-radius: 20%; pointer-events: none;">
 </button>
     <button style="border-radius: 15%;" data-page="math" class="page-link btn-glow">Math</button>
     <button style="border-radius: 15%;" data-page="ela" class="page-link btn-glow">ELA</button>
@@ -245,11 +246,11 @@
     <button style="border-radius: 15%;" data-page="profile" class="page-link btn-glow">Profile</button>
     <span class="ml-auto flex items-center gap-4 text-xs">
       <span class="flex items-center gap-1">
-        <img src="https://cdn-icons-png.flaticon.com/128/8727/8727031.png" alt="XP" class="w-4 h-4">
+        <img src="Image Assets/XP Icon.png" alt="XP" class="w-6 h-6">
         <span id="xpDisplay" class="font-bold">0</span>
       </span>
       <span class="flex items-center gap-1">
-        <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" alt="Coins" class="w-4 h-4">
+        <img src="Image Assets/Coin Icon.png" alt="Coins" class="w-6 h-6">
         <span id="coinDisplay" class="font-bold">0</span>
       </span>
     </span>
@@ -268,7 +269,7 @@
 
       <div class="grid md:grid-cols-2 gap-6 mt-8">
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
-          <img src="https://github.com/yosuf-e/QuestCraft/blob/main/Image%20Assets/Math%20Icon.png?raw=true" alt="Math-Icon" style="height: 60px; width: 60px;">
+          <img src="Image Assets/Math Icon.png" alt="Math-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">Math Missions</h2>
           <p class="text-sm text-slate-300">
             Grade‑based topics from visual apples to geometry with shapes.
@@ -280,7 +281,7 @@
         </div>
 
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
-          <img src="https://github.com/yosuf-e/QuestCraft/blob/main/Image%20Assets/ELA%20Icon.png?raw=true" alt="ELA-Icon" style="height: 60px; width: 60px;">
+          <img src="Image Assets/ELA Icon.png" alt="ELA-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">ELA Quests</h2>
           <p class="text-sm text-slate-300">Reading passages with MCQs.</p>
           <button data-page="ela"
@@ -290,7 +291,7 @@
         </div>
 
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
-          <img src="https://github.com/yosuf-e/QuestCraft/blob/main/Image%20Assets/Arcade%20Icon.png?raw=true" alt="Game-Icon" style="height: 60px; width: 60px;">
+          <img src="Image Assets/Arcade Icon.png" alt="Game-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">Games Arcade</h2>
           <p class="text-sm text-slate-300">Play inside the page with a 3‑minute timer.</p>
           <button data-page="games"
@@ -300,7 +301,7 @@
         </div>
 
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
-          <img src="https://github.com/yosuf-e/QuestCraft/blob/main/Image%20Assets/Profile%20Icon.png?raw=true" alt="Profile-Icon" style="height: 60px; width: 60px;">
+          <img src="Image Assets/Profile Icon.png" alt="Profile-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">Profile Customization</h2>
           <p class="text-sm text-slate-300">Choose your avatar, pet, or just restart!</p>
           <button data-page="profile"
@@ -379,7 +380,7 @@
       <h2 class="text-2xl font-bold mt-4">Rewards Arcade</h2>
       <p class="text-sm text-slate-300">
         Earn
-        <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+        <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
         by answering questions correctly, then spend them on 3‑minute game passes. Games open inside the page.
       </p>
 
@@ -392,7 +393,7 @@
           <button class="btn-glow open-game px-3 py-2 rounded-lg bg-blue-400 text-slate-900 font-semibold w-full"
                   data-url="https://smashkarts.io/" data-cost="130">
             Play 3‑Mins (
-            <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+            <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
             130)
           </button>
         </div>
@@ -405,7 +406,7 @@
           <button class="btn-glow open-game px-3 py-2 rounded-lg bg-yellow-400 text-slate-900 font-semibold w-full"
                   data-url="https://vectaria.io/" data-cost="90">
             Play 3‑Mins (
-            <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+            <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
             90)
           </button>
         </div>
@@ -418,7 +419,7 @@
           <button class="btn-glow open-game px-3 py-2 rounded-lg bg-red-400 text-slate-900 font-semibold w-full"
                   data-url="https://blockblast.game/" data-cost="150">
             Play 3‑Mins (
-            <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+            <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
             150)
           </button>
         </div>
@@ -431,7 +432,7 @@
           <button class="btn-glow open-game px-3 py-2 rounded-lg bg-blue-400 text-slate-900 font-semibold w-full"
                   data-url="https://www.geometrydash.com/" data-cost="150">
             Play 3‑Mins (
-            <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+            <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
             150)
           </button>
         </div>
@@ -444,7 +445,7 @@
           <button class="btn-glow open-game px-3 py-2 rounded-lg bg-yellow-400 text-slate-900 font-semibold w-full"
                   data-url="https://hexanaut.io/" data-cost="120">
             Play 3‑Mins (
-            <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+            <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
             120)
           </button>
         </div>
@@ -457,7 +458,7 @@
           <button class="btn-glow open-game px-3 py-2 rounded-lg bg-red-400 text-slate-900 font-semibold w-full"
                   data-url="https://www.worldguessr.com/" data-cost="80">
             Play 3‑Mins (
-            <img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins">
+            <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
             80)
           </button>
         </div>
@@ -476,81 +477,95 @@
     </section>
 
   <!-- PROFILE CUSTOMIZATION PAGE -->
-<section id="page-profile" class="hidden px-4 py-6">
-  <div class="max-w-3xl mx-auto mt-10 bg-slate-800/90 p-6 rounded-xl shadow-lg text-white">
+<section id="page-profile">
+  <div class="max-w-3xl mx-auto bg-slate-800/90 border border-slate-700/50 p-8 rounded-2xl shadow-2xl backdrop-blur-sm">
+    <h2 class="text-3xl font-black mb-8 text-center tracking-wide bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-200 bg-clip-text text-transparent">
+      PROFILE CUSTOMIZATION
+    </h2>
 
-    <h2 class="text-2xl font-bold mb-6 text-center">Profile Customization</h2>
     <!-- CHARACTER + PET SIDE-BY-SIDE -->
-    <div class="flex justify-center items-start gap-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 relative">
+      
+      <!-- CHARACTER SECTION -->
+      <div class="flex flex-col items-center justify-between min-h-[360px] bg-slate-900/40 p-6 rounded-xl border border-slate-700/30">
+        <div>
+          <h4 class="text-xl font-bold text-blue-400">CHARACTER</h4>
+        </div>
 
-      <!-- CHARACTER -->
-      <div class="text-center">
-
-        <h3 class="text-xl font-bold mb-2">CHARACTER</h3>
-
-        <div class="flex items-center justify-center gap-4 mb-4">
+        <!-- Carousel Container -->
+        <div class="flex items-center justify-center gap-6 my-4 w-full relative group">
           <button onclick="switchCharacter(-1)"
-                  class="btn-glow px-2 py-1 bg-slate-600 rounded-lg hover:bg-slate-500">←</button>
+                  class="transition-all duration-200 transform hover:scale-110 active:scale-95 py-1 px-2 bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-xl font-bold shadow-lg">←</button>
 
-          <img id="characterPreview"
-               src=""
-               class="w-40 select-none pointer-events-none"
-               draggable="false">
+          <div class="w-44 h-44 flex items-center justify-center bg-slate-950/50 rounded-2xl border border-slate-800 p-2 overflow-hidden shadow-inner">
+            <img id="characterPreview"
+                 src=""
+                 class="max-w-full max-h-full object-contain select-none pointer-events-none filter drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]"
+                 draggable="false"
+                 alt="Character Preview">
+          </div>
 
           <button onclick="switchCharacter(1)"
-                  class="btn-glow px-2 py-1 bg-slate-600 rounded-lg hover:bg-slate-500">→</button>
+                  class="transition-all duration-200 transform hover:scale-110 active:scale-95 py-1 px-2 bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-xl font-bold shadow-lg">→</button>
         </div>
 
-        <div class="flex items-center justify-center gap-2 mb-2">
-          <span id="characterCost" class="text-yellow-300 font-bold"></span>
+        <!-- Meta Actions -->
+        <div class="w-full flex flex-col items-center gap-3">
+          <div id="characterCost" class="font-bold tracking-wide h-6 flex items-center"></div>
+          <button id="characterButton" class="w-full max-w-[180px] font-black tracking-wider py-3 rounded-xl uppercase transition-all duration-200 shadow-md">
+            LOADING
+          </button>
         </div>
-
-        <button id="characterButton"
-                class="btn-glow px-6 py-2 bg-yellow-500 text-black font-bold rounded-lg">
-          BUY
-        </button>
       </div>
 
-      <!-- VERTICAL DIVIDER -->
-      <div class="w-px bg-slate-600 h-64 opacity-60"></div>
+      <!-- DESKTOP VERTICAL DIVIDER -->
+      <div class="hidden md:block absolute left-1/2 top-4 bottom-4 w-px bg-gradient-to-b from-transparent via-slate-700 to-transparent opacity-60"></div>
 
-      <!-- PET -->
-      <div class="text-center">
+      <!-- PET SECTION -->
+      <div class="flex flex-col items-center justify-between min-h-[360px] bg-slate-900/40 p-6 rounded-xl border border-slate-700/30">
+        <div>
+          <h4 class="text-xl font-bold text-emerald-400">PET</h4>
+        </div>
 
-        <h3 class="text-xl font-bold mb-2">PET</h3>
-
-        <div class="flex items-center justify-center gap-4 mb-4">
+        <!-- Carousel Container -->
+        <div class="flex items-center justify-center gap-6 my-4 w-full relative group">
           <button onclick="switchPet(-1)"
-                  class="btn-glow px-2 py-1 bg-slate-600 rounded-lg hover:bg-slate-500">←</button>
+                  class="transition-all duration-200 transform hover:scale-110 active:scale-95 py-1 px-2 bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-xl font-bold shadow-lg">←</button>
 
-          <img id="petPreview"
-               src=""
-               class="mt-20 w-32 select-none pointer-events-none"
-               draggable="false">
+          <div class="w-44 h-44 flex items-center justify-center bg-slate-950/50 rounded-2xl border border-slate-800 p-2 overflow-hidden shadow-inner">
+            <img id="petPreview"
+                 src=""
+                 style="transform: scale(0.85);"
+                 class="max-w-full max-h-full object-contain select-none pointer-events-none filter drop-shadow-[0_10px_10px_rgba(0,0,0,0.3)]"
+                 draggable="false"
+                 alt="Pet Preview">
+          </div>
 
           <button onclick="switchPet(1)"
-                  class="btn-glow px-2 py-1 bg-slate-600 rounded-lg hover:bg-slate-500">→</button>
+                  class="transition-all duration-200 transform hover:scale-110 active:scale-95 py-1 px-2 bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-xl font-bold shadow-lg">→</button>
         </div>
 
-        <div class="flex items-center justify-center gap-2 mb-2">
-          <span id="petCost" class="text-yellow-300 font-bold"></span>
+        <!-- Meta Actions -->
+        <div class="w-full flex flex-col items-center gap-3">
+          <div id="petCost" class="font-bold tracking-wide h-6 flex items-center"></div>
+          <button id="petButton" class="w-full max-w-[180px] font-black tracking-wider py-3 rounded-xl uppercase transition-all duration-200 shadow-md">
+            LOADING
+          </button>
         </div>
-
-        <button id="petButton"
-                class="btn-glow px-6 py-2 bg-yellow-500 text-black font-bold rounded-lg">
-          EQUIP
-        </button>
       </div>
+
     </div>
   </div>
-  <!-- RESET PROGRESS BUTTON -->
-<div class="max-w-3xl mx-auto mt-4 text-center">
-  <button onclick="resetProgress()"
-          class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg">
-    Reset All Profile Progress
-  </button>
-</div>
+
+  <!-- RESET INFRASTRUCTURE BUTTON -->
+  <div class="max-w-3xl mx-auto mt-8 text-center">
+    <button onclick="resetProgress()"
+            class="px-5 py-2.5 bg-red-950 hover:bg-red-900/60 border border-red-800/40 text-red-400 text-xs font-bold tracking-widest uppercase rounded-lg transition-colors duration-150">
+      Reset All Profile Progress
+    </button>
+  </div>
 </section>
+
 
   </main>
 
@@ -1041,7 +1056,8 @@
       });
     });
 
-    // Profile Logic
+
+// Profile Logic
     let profileData = JSON.parse(localStorage.getItem("profileData")) || {
       ownedCharacters: [0],
       ownedPets: [0],
@@ -1053,16 +1069,17 @@
     let petIndex = profileData.equippedPet || 0;
 
     function coinText(amount) {
-      return `<img src="https://cdn-icons-png.flaticon.com/128/1490/1490853.png" class="inline w-4 h-4" alt="Coins"> ${amount}`;
+      return `<img src="Image Assets/Coin Icon.png" class="inline w-5 h-5 mr-2" alt="Coins"> ${amount}`;
     }
 
     const characters = [
-      { img: "https://s.namemc.com/3d/skin/body.png?id=59e3a240bd150317&model=classic&width=308&height=308", costCoins: 20 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=0a3d3713162bbd83&model=slim&width=384&height=384", costCoins: 20 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=ff13a66098965233&model=classic&width=384&height=384", costCoins: 20 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=726f83fa5377d811&model=slim&width=384&height=384", costCoins: 20 },
       { img: "https://s.namemc.com/3d/skin/body.png?id=c28178aaaa2d79d5&model=slim&width=384&height=384", costCoins: 150 },
       { img: "https://s.namemc.com/3d/skin/body.png?id=a5a3aa14a8018dae&model=slim&width=384&height=384", costCoins: 150 },
       { img: "https://s.namemc.com/3d/skin/body.png?id=7dbf7205f0c3c386&model=slim&width=384&height=384", costCoins: 200 },
-      { img: "https://s.namemc.com/3d/skin/body.png?id=48458b73d1075c60&model=classic&width=384&height=384", costCoins: 300 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=69aada765cf09671&model=classic&width=384&height=384", costCoins: 300 },
+      { img: "https://s.namemc.com/3d/skin/body.png?id=5173c405cba4b429&model=classic&width=384&height=384", costCoins: 350 },
       { img: "https://s.namemc.com/3d/skin/body.png?id=624142dff6423d90&model=slim&width=384&height=384", costCoins: 400 },
       { img: "https://s.namemc.com/3d/skin/body.png?id=bc7db647674d1f01&model=slim&width=384&height=384", costCoins: 500 },
       { img: "https://s.namemc.com/3d/skin/body.png?id=d67bfc49e01dee34&model=classic&width=384&height=384", costCoins: 600 },
@@ -1078,7 +1095,11 @@
       { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/68/Baby_Red_Cat.png", costCoins: 200 },
       { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/44/Baby_Siamese_Cat.png", costCoins: 250 },
       { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/49/Baby_Tabby_Cat.png", costCoins: 300 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/8/82/Wolf_shaking.gif/revision/latest?cb=20210212005440", costCoins: 500 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/de/Red_Parrot.png/revision/latest?cb=20240729214753", costCoins: 300 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/75/Blue_Parrot.png/revision/latest?cb=20170720112603", costCoins: 350 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a2/Green_Parrot.png/revision/latest?cb=20170720112640", costCoins: 400 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/fe/Cyan_Parrot.png/revision/latest?cb=20170720112749", costCoins: 450 },
+      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/90/Gray_Parrot.png/revision/latest?cb=20170720112530", costCoins: 500 },
     ];
 
     function saveProfile() {
@@ -1098,28 +1119,44 @@
 
       characterPreview.src = characters[charIndex].img;
 
-      if (profileData.ownedCharacters.includes(charIndex)) {
-        characterCost.innerHTML = "Owned";
-        characterButton.textContent = "EQUIP";
-        characterButton.className = "btn-glow px-6 py-2 bg-blue-500 text-white font-bold rounded-lg";
-      } else {
-        characterCost.innerHTML = coinText(characters[charIndex].costCoins);
-        characterButton.textContent = "BUY";
-        characterButton.className = "btn-glow px-6 py-2 bg-yellow-500 text-black font-bold rounded-lg";
-      }
+      // --- Character Block Logic ---
+  characterPreview.src = characters[charIndex].img;
+  if (profileData.equippedCharacter === charIndex) {
+    characterCost.innerHTML = `<span class="text-xs uppercase px-2 py-0.5 bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-md font-black tracking-widest">Active</span>`;
+    characterButton.textContent = "Equipped";
+    characterButton.disabled = true;
+    characterButton.className = "w-full max-w-[180px] font-black py-3 rounded-xl bg-slate-700 text-slate-400 cursor-not-allowed uppercase border border-slate-600/50";
+  } else if (profileData.ownedCharacters.includes(charIndex)) {
+    characterCost.innerHTML = `<span class="text-xs text-slate-400 uppercase font-semibold">Unlocked</span>`;
+    characterButton.textContent = "Equip";
+    characterButton.disabled = false;
+    characterButton.className = "w-full max-w-[180px] font-black py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white uppercase hover:shadow-lg hover:shadow-blue-600/20 active:scale-95 transition-all duration-150";
+  } else {
+    characterCost.innerHTML = coinText(characters[charIndex].costCoins);
+    characterButton.textContent = "Buy Character";
+    characterButton.disabled = false;
+    characterButton.className = "w-full max-w-[180px] font-black py-3 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-amber-500/20 active:scale-95 transition-all duration-150";
+  }
 
-      petPreview.src = pets[petIndex].img;
-
-      if (profileData.ownedPets.includes(petIndex)) {
-        petCost.innerHTML = "Owned";
-        petButton.textContent = "EQUIP";
-        petButton.className = "btn-glow px-6 py-2 bg-blue-500 text-white font-bold rounded-lg";
-      } else {
-        petCost.innerHTML = coinText(pets[petIndex].costCoins);
-        petButton.textContent = "BUY";
-        petButton.className = "btn-glow px-6 py-2 bg-green-500 text-white font-bold rounded-lg";
-      }
-    }
+  // --- Pet Block Logic ---
+  petPreview.src = pets[petIndex].img;
+  if (profileData.equippedPet === petIndex) {
+    petCost.innerHTML = `<span class="text-xs uppercase px-2 py-0.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-md font-black tracking-widest">Active</span>`;
+    petButton.textContent = "Equipped";
+    petButton.disabled = true;
+    petButton.className = "w-full max-w-[180px] font-black py-3 rounded-xl bg-slate-700 text-slate-400 cursor-not-allowed uppercase border border-slate-600/50";
+  } else if (profileData.ownedPets.includes(petIndex)) {
+    petCost.innerHTML = `<span class="text-xs text-slate-400 uppercase font-semibold">Unlocked</span>`;
+    petButton.textContent = "Equip";
+    petButton.disabled = false;
+    petButton.className = "w-full max-w-[180px] font-black py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white uppercase hover:shadow-lg hover:shadow-blue-600/20 active:scale-95 transition-all duration-150";
+  } else {
+    petCost.innerHTML = coinText(pets[petIndex].costCoins);
+    petButton.textContent = "Buy Pet";
+    petButton.disabled = false;
+    petButton.className = "w-full max-w-[180px] font-black py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-emerald-500/20 active:scale-95 transition-all duration-150";
+  }
+}
 
     window.switchCharacter = function(dir) {
       charIndex = (charIndex + dir + characters.length) % characters.length;
@@ -1173,6 +1210,7 @@
 
       updateUI();
     });
+
 
     // Sound effect on click
     const clickSound = document.getElementById('btnClickSound');
