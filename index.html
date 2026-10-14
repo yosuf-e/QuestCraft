@@ -426,7 +426,7 @@
 
         <!-- Geometry Dash -->
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-          <img src="https://static.wikia.nocookie.net/logopedia/images/4/41/Geometry_Dash_Icon.svg/revision/latest?cb=20220220121501"
+          <img src="https://play-lh.googleusercontent.com/tF6siCn3bM7JmXqB_iLqZm17DCI-C2h5X8I_n1-bqmkMJrN1sm2ZDrj8IAqSFtQcF85QX1Puvhsi_vcnSmmzAOk=w240-h480-rw"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">Geometry Dash</h3>
           <button class="btn-glow open-game px-3 py-2 rounded-lg bg-blue-400 text-slate-900 font-semibold w-full"
@@ -1061,8 +1061,8 @@
     let profileData = JSON.parse(localStorage.getItem("profileData")) || {
       ownedCharacters: [0],
       ownedPets: [0],
-      equippedCharacter: 0,
-      equippedPet: 0
+      equippedCharacter: '',
+      equippedPet: '',
     };
 
     let charIndex = profileData.equippedCharacter || 0;
@@ -1089,17 +1089,17 @@
     ];
 
     const pets = [
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/79/Baby_Calico_Cat.png", costCoins: 50 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a8/Baby_Jellie_Cat.png", costCoins: 100 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b4/Baby_Persian_Cat.png", costCoins: 150 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/68/Baby_Red_Cat.png", costCoins: 200 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/44/Baby_Siamese_Cat.png", costCoins: 250 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/49/Baby_Tabby_Cat.png", costCoins: 300 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/de/Red_Parrot.png/revision/latest?cb=20240729214753", costCoins: 300 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/75/Blue_Parrot.png/revision/latest?cb=20170720112603", costCoins: 350 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a2/Green_Parrot.png/revision/latest?cb=20170720112640", costCoins: 400 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/fe/Cyan_Parrot.png/revision/latest?cb=20170720112749", costCoins: 450 },
-      { img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/90/Gray_Parrot.png/revision/latest?cb=20170720112530", costCoins: 500 },
+      { img: "Image Assets/Pets/Calico_Cat.webp", costCoins: 50 },
+      { img: "Image Assets/Pets/Jellie_Cat.webp", costCoins: 100 },
+      { img: "Image Assets/Pets/Persian_Cat.webp", costCoins: 150 },
+      { img: "Image Assets/Pets/Red_Cat.webp", costCoins: 200 },
+      { img: "Image Assets/Pets/Siamese_Cat.webp", costCoins: 250 },
+      { img: "Image Assets/Pets/Tabby_Cat.webp", costCoins: 300 },
+      { img: "Image Assets/Pets/Red_Parrot.webp", costCoins: 300 },
+      { img: "Image Assets/Pets/Blue_Parrot.webp", costCoins: 350 },
+      { img: "Image Assets/Pets/Green_Parrot.webp", costCoins: 400 },
+      { img: "Image Assets/Pets/Cyan_Parrot.webp", costCoins: 450 },
+      { img: "Image Assets/Pets/Gray_Parrot.webp", costCoins: 500 },
     ];
 
     function saveProfile() {
@@ -1230,8 +1230,8 @@
       profileData = {
         ownedCharacters: [],
         ownedPets: [],
-        equippedCharacter: 0,
-        equippedPet: 0
+        equippedCharacter: '',
+        equippedPet: '',
       };
 
       charIndex = 0;
