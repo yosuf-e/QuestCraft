@@ -2246,5 +2246,37 @@ window.ELA_DATA = {
         }
       ]
     }
+  ],
+
+  // ===============
+// SPELLING LIST
+// ===============
+  spellingWords: [
+    "banana", "elephant", "teacher", "computer", "library",
+    "mountain", "science", "chocolate", "friend", "beautiful",
+    "journey", "adventure", "important", "vacation", "knowledge",
+    "language", "history", "discovery", "planet", "education",
+    "animal", "building", "pencil", "notebook", "backpack",
+    "calendar", "festival", "community", "hospital", "engineer",
+    "telescope", "dinosaur", "waterfall", "volcano", "hurricane",
+    "lightning", "symphony", "orchestra", "astronaut", "galaxy",
+    "mystery", "treasure", "creature", "fountain", "butterfly",
+    "sunflower", "caterpillar", "umbrella", "skeleton", "pyramid",
+    "medicine", "sculpture", "architect", "chemistry", "biography",
+    "dictionary", "geography", "literature", "paragraph", "sentence",
+    "character", "instrument", "telephone", "television", "helicopter",
+    "submarine", "parachute", "acrobat", "champion", "exercise",
+    "generous", "grateful", "imaginary", "invisible", "majestic",
+    "nutritious", "obedient", "peaceful", "quarrel", "reliable",
+    "sensitive", "talented", "universal", "valuable", "wonderful",
+    "youthful", "zealous", "accident", "brilliant", "confident",
+    "delicious", "energetic", "fantastic", "gorgeous", "harmonious",
+    "incredible", "jubilant", "luminous", "mischief", "navigator",
+    "outstanding", "phenomenal", "quest", "resilient", "spectacular",
+    "triumphant", "unusual", "victorious", "whisper", "xenon",
+    "yawn", "zenith", "ambition", "bravery", "curiosity",
+    "determination", "enthusiasm", "freedom", "gratitude", "honesty",
+    "imagination", "justice", "kindness", "leadership", "motivation",
+    "patience", "respect", "success", "tolerance", "wisdom"
   ]
 };
