@@ -283,7 +283,7 @@
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
           <img src="Image Assets/ELA Icon.png" alt="ELA-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">ELA Quests</h2>
-          <p class="text-sm text-slate-300">Reading passages with MCQs.</p>
+          <p class="text-sm text-slate-300">Reading passages and spelling (NEW UPDATE)</p>
           <button data-page="ela"
                   class="btn-glow page-link mt-2 px-3 py-2 rounded-lg bg-blue-400 text-slate-900 font-semibold w-full">
             Start ELA
@@ -342,38 +342,108 @@
       </div>
     </section>
 
-    <!-- ELA PAGE -->
-    <section id="page-ela" class="space-y-6 hidden">
-      <h2 class="text-2xl font-bold mt-4">ELA Quests</h2>
+    <!-- ELA HOME PAGE -->
+<section id="page-ela" class="hidden">
+  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-6">
+    <h2 class="text-2xl font-bold text-center">ELA Quests</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <button onclick="openElaReading()"
+        class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:bg-slate-800 transition">
+        <h3 class="text-xl font-bold mb-3">📖 Reading Practice</h3>
+        <p class="text-slate-300 text-sm">
+          Read passages and answer comprehension questions.
+        </p>
+      </button>
 
-      <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-4">
-        <label class="block text-sm mb-1">Choose Level:</label>
-        <select id="elaLevel" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm">
-          <option value="elementary">Elementary</option>
-          <option value="middle">Middle School</option>
-          <option value="high">High School</option>
-        </select>
+      <button onclick="openElaSpelling()"
+        class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:bg-slate-800 transition">
 
-        <button id="loadEla"
-          class="btn-glow mt-2 px-3 py-2 rounded-lg bg-blue-400 text-slate-900 font-semibold w-full">
-          Load Reading & Questions
-        </button>
+        <h3 class="text-xl font-bold mb-3">🔤 Spelling Practice</h3>
 
-        <div id="elaContent" class="mt-3 space-y-3">
-          <div>
-            <h3 class="text-sm font-semibold">Reading Citation</h3>
-            <p id="elaCitation" class="text-xs text-slate-300"></p>
-          </div>
+        <p class="text-slate-300 text-sm">
+          Listen to words and spell them correctly.
+        </p>
+      </button>
+    </div>
+  </div>
+</section>
 
-          <article class="bg-slate-900/70 border border-slate-700 rounded-xl p-3 text-sm leading-relaxed">
-            <p id="elaText"></p>
-          </article>
 
-          <div id="elaQuestions" class="space-y-3"></div>
-          <p id="elaFeedback" class="text-sm mt-2"></p>
-        </div>
+<!-- ELA READING PAGE -->
+<section id="page-ela-reading" class="hidden">
+  <button
+    onclick="openElaHome()"
+    class="mb-4 px-3 py-2 rounded-lg bg-slate-700 hover:bg-slate-600">
+    ← Back
+  </button>
+  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-4">
+
+    <label class="block text-sm mb-1">
+      Choose Level:
+    </label>
+
+    <select id="elaLevel"
+      class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm">
+      <option value="elementary">Elementary</option>
+      <option value="middle">Middle School</option>
+      <option value="high">High School</option>
+    </select>
+
+    <button id="loadEla"
+      class="btn-glow mt-2 px-3 py-2 rounded-lg bg-blue-400 text-slate-900 font-semibold w-full">
+      Load Reading & Questions
+    </button>
+    <div id="elaContent" class="mt-3 space-y-3">
+      <div>
+        <h3 class="text-sm font-semibold">
+          Reading Citation
+        </h3>
+        <p id="elaCitation"
+           class="text-xs text-slate-300">
+        </p>
       </div>
-    </section>
+      <article
+        class="bg-slate-900/70 border border-slate-700 rounded-xl p-3 text-sm leading-relaxed">
+        <p id="elaText"></p>
+      </article>
+      <div id="elaQuestions"
+           class="space-y-3">
+      </div>
+      <p id="elaFeedback"
+         class="text-sm mt-2">
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ELA SPELLING PAGE -->
+<section id="page-ela-spelling" class="hidden">
+  <button
+    onclick="openElaHome()"
+    class="mb-4 px-3 py-2 rounded-lg bg-slate-700 hover:bg-slate-600">
+    ← Back
+  </button>
+  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4">
+    <h2 class="text-xl font-bold mb-4">
+      Spelling Practice
+    </h2>
+    <button id="playWord"
+      class="w-full mb-4 px-3 py-2 rounded-lg bg-green-500">
+      🔊 Play Word
+    </button>
+    <div id="spellingBoxes"
+      class="flex justify-center gap-2 flex-wrap mb-4">
+    </div>
+    <button id="checkSpelling"
+      class="w-full px-3 py-2 rounded-lg bg-blue-500">
+      Check Answer
+    </button>
+    <p id="spellingFeedback"
+       class="mt-4 text-center">
+    </p>
+  </div>
+</section>
+
 
     <!-- GAMES PAGE -->
     <section id="page-games" class="space-y-6 hidden">
@@ -649,11 +719,24 @@
     // Page navigation
     const pages = ['home', 'math', 'ela', 'games', 'profile'];
     function showPage(name) {
-      pages.forEach(p => {
-        const el = document.getElementById('page-' + p);
-        if (el) el.classList.toggle('hidden', p !== name);
-      });
-    }
+
+  const readingPage =
+    document.getElementById("page-ela-reading");
+
+  const spellingPage =
+    document.getElementById("page-ela-spelling");
+
+  if (readingPage)
+    readingPage.classList.add("hidden");
+
+  if (spellingPage)
+    spellingPage.classList.add("hidden");
+
+  pages.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    if (el) el.classList.toggle('hidden', p !== name);
+  });
+}
     document.querySelectorAll('.page-link').forEach(btn => {
       btn.addEventListener('click', () => {
         const page = btn.dataset.page;
@@ -884,7 +967,8 @@
     }
     if (mathGradeSelect) generateMathQuestion(parseInt(mathGradeSelect.value, 10));
 
-    // ELA logic
+
+    // ELA LOGIC (READING)
     const elaLevelSelect = document.getElementById('elaLevel');
     const elaCitation = document.getElementById('elaCitation');
     const elaText = document.getElementById('elaText');
@@ -1000,6 +1084,215 @@
 
     const loadElaBtn = document.getElementById("loadEla");
     if (loadElaBtn) loadElaBtn.addEventListener("click", loadElaData);
+
+    // ====================================
+// ELA SUB PAGE NAVIGATION
+// ====================================
+
+function openElaHome() {
+  document.getElementById("page-ela").classList.remove("hidden");
+  document.getElementById("page-ela-reading").classList.add("hidden");
+  document.getElementById("page-ela-spelling").classList.add("hidden");
+}
+function openElaReading() {
+  document.getElementById("page-ela").classList.add("hidden");
+  document.getElementById("page-ela-reading").classList.remove("hidden");
+  document.getElementById("page-ela-spelling").classList.add("hidden");
+}
+
+function openElaSpelling() {
+  document.getElementById("page-ela").classList.add("hidden");
+  document.getElementById("page-ela-reading").classList.add("hidden");
+  document.getElementById("page-ela-spelling").classList.remove("hidden");
+}
+
+// ====================================
+// SPELLING
+// ====================================
+const spellingWords = [
+
+  "banana",
+  "elephant",
+  "teacher",
+  "computer",
+  "library",
+  "mountain",
+  "science",
+  "chocolate",
+  "friend",
+  "beautiful",
+  "journey",
+  "adventure",
+  "important",
+  "vacation",
+  "knowledge",
+  "language",
+  "history",
+  "discovery",
+  "planet",
+  "education",
+  "animal",
+  "building",
+  "pencil",
+  "notebook",
+  "backpack",
+  "calendar",
+  "festival",
+  "community",
+  "hospital",
+  "engineer"
+
+];
+
+let remainingWords = [...spellingWords];
+let currentWord = "";
+
+function makeBoxes(wordLength) {
+
+  const container =
+    document.getElementById("spellingBoxes");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  for (let i = 0; i < wordLength; i++) {
+
+    const input =
+      document.createElement("input");
+
+    input.maxLength = 1;
+
+    input.className =
+      "w-10 h-12 text-center bg-slate-900 border border-slate-700 rounded text-lg";
+
+    input.addEventListener("input", () => {
+
+      const next =
+        input.nextElementSibling;
+
+      if (next) next.focus();
+
+    });
+
+    container.appendChild(input);
+  }
+}
+
+function generateSpellingWord() {
+
+  if (remainingWords.length === 0) {
+
+    const feedback =
+      document.getElementById("spellingFeedback");
+
+    feedback.textContent =
+      "🎉 You completed every spelling word!";
+
+    launchConfetti();
+
+    return;
+  }
+
+  const randomIndex =
+    Math.floor(
+      Math.random() *
+      remainingWords.length
+    );
+
+  currentWord =
+    remainingWords[randomIndex];
+
+  remainingWords.splice(
+    randomIndex,
+    1
+  );
+
+  makeBoxes(currentWord.length);
+
+  speechSynthesis.cancel();
+
+  const utter =
+    new SpeechSynthesisUtterance(
+      currentWord
+    );
+
+  utter.rate = 0.8;
+
+  speechSynthesis.speak(utter);
+}
+
+const playWordBtn =
+  document.getElementById("playWord");
+
+if (playWordBtn) {
+
+  playWordBtn.addEventListener(
+    "click",
+    generateSpellingWord
+  );
+}
+
+const checkSpellingBtn =
+  document.getElementById("checkSpelling");
+
+if (checkSpellingBtn) {
+
+  checkSpellingBtn.addEventListener(
+    "click",
+    () => {
+
+      const boxes =
+        document.querySelectorAll(
+          "#spellingBoxes input"
+        );
+
+      let answer = "";
+
+      boxes.forEach(box => {
+        answer += box.value;
+      });
+
+      answer =
+        answer.toLowerCase();
+      const feedback =
+        document.getElementById(
+          "spellingFeedback"
+        );
+
+      if (
+        answer ===
+        currentWord.toLowerCase()
+      ) {
+        feedback.textContent =
+          "Correct! +20 Coins +20 XP";
+        feedback.className =
+          "mt-4 text-center text-emerald-400";
+        addCoins(20);
+        addXP(20);
+
+        launchConfetti();
+        if (soundCorrect) {
+          soundCorrect.currentTime = 0;
+          soundCorrect.play();
+        }
+        setTimeout(() => {
+          generateSpellingWord();
+        }, 800);
+
+      } else {
+        feedback.textContent =
+          "Incorrect. Try Again.";
+        feedback.className =
+          "mt-4 text-center text-pink-400";
+        if (soundWrong) {
+          soundWrong.currentTime = 0;
+          soundWrong.play();
+        }
+      }
+    }
+  );
+}
 
     // Games logic
     const gameContainer = document.getElementById('gameContainer');
@@ -1272,5 +1565,19 @@
     });
   })();
 </script>
+
+<!-- Footer -->
+<footer class="mt-12 border-t border-slate-700 bg-slate-900 py-2 px-6">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between text-sm text-slate-400">
+
+    <div class="font-semibold text-slate-300">
+      Created by <a href="https://github.com/yosuf-e" style="font-weight: bold; font-style: italic ; text-decoration: underline;">Yosuf Ahmed Elshaer</a> 
+    </div>
+
+    <div class="mt-2 md:mt-0">
+      WE ARE NOT AFFILIATED WITH <a href="https://questcraft.org/" style="font-weight: bold; font-style: italic ; text-decoration: underline;">quesrcraft.org</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
