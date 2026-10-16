@@ -207,6 +207,13 @@
   background-size: 150%;
   color: white;
 }
+
+.floating-element {
+  position: fixed; 
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999; 
+}
 </style>
 
 </head>
@@ -228,6 +235,16 @@
 </div>
 
 <body class="minecraft-sky-full text-slate-100 min-h-screen">
+  <!-- Feedback Icon-->
+   <div class="floating-element">
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfeINr7qjxyF13LTPs0F_7ZV8jSdY2bDicD5C-j88ZJ0uVbRw/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">
+  <img 
+    src="https://cdn-icons-gif.flaticon.com/14675/14675904.gif"
+    title="Give us some Feedback! 😃" 
+    alt="Feedback Link"
+    style="height: 50px; width: 50px; border-radius: 50%; cursor: pointer;"
+  ></a>
+</div>
 
   <!-- Top Nav -->
   <nav class="bg-slate-800 border-b border-slate-700 px-4 py-3 flex items-center gap-4 text-sm font-semibold">
