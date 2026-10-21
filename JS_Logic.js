@@ -2,7 +2,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   const bgMusic = document.getElementById('bgMusic');
   if (bgMusic) {
-    bgMusic.volume = 0.04; // 4% volume
+    bgMusic.volume = 0.02; // 2% volume
     bgMusic.play().catch(() => {
       document.body.addEventListener('click', () => {
         bgMusic.play();
