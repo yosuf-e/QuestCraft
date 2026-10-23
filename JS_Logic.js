@@ -623,7 +623,7 @@ let charIndex = profileData.equippedCharacter || 0;
 let petIndex = profileData.equippedPet || 0;
 
 function coinText(amount) {
-  return `<img src="Image Assets/Coin Icon.png" class="inline w-5 h-5 mr-2" alt="Coins"> ${amount}`;
+  return `<img src="Image Assets/Coin Icon.webp" class="inline w-5 h-5 mr-2" alt="Coins"> ${amount}`;
 }
 
 const characters = [
