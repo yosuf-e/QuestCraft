@@ -1,5 +1,6 @@
 # Website Preview (Version 5.2.1)
-<img width="5437" height="2835" alt="Website Preview Collage" src="https://github.com/user-attachments/assets/0967a0e5-8da5-412c-bac6-ad6e4c79dede" />
+<img width="5437" height="2835" alt="image" src="https://github.com/user-attachments/assets/34ef2820-a728-4a83-ad9b-8045863ec0b4" />
+
 
 ## ELA Practice Questions:
 - Comprehension Questions (Elementery - High School Level)
