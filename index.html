@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <title>QuestCraft</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="google-site-verification" content="DWbSZVRXh4_7Z1F5AaHfAcRy3DU4LpDhfpvfz-tVTu8" />
-  <link rel="icon" type="image/png" href="Image Assets/QuestCraft Logo.png">
-  <link rel="apple-touch-icon" href="Image Assets/QuestCraft Logo.png">
+  <link rel="icon" type="image/png" href="Image Assets/QuestCraft Logo.webp">
+  <link rel="apple-touch-icon" href="Image Assets/QuestCraft Logo.webp">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="ela_data.js"></script>
@@ -162,7 +161,7 @@
 
   /* Full-resolution Minecraft sky background */
   .minecraft-sky-full {
-    background-image: url("Image Assets/Background.jpg");
+    background-image: url("Image Assets/Background.webp");
     background-size: cover;        /* keep full resolution */
     background-position: center;   /* keep centered */
     background-repeat: no-repeat;  /* no tiling */
@@ -223,7 +222,7 @@
   <div class="splash-inner animate-in" role="presentation">
     <div class="profile-wrap">
       <div class="profile-photo" id="profilePhoto">
-        <img src="Image Assets/QuestCraft Logo.png" alt="Website-Logo" draggable="false"/>
+        <img src="Image Assets/QuestCraft Logo.webp" alt="Website-Logo" draggable="false"/>
       </div>
       <h1 class="splash-title">Welcome!</h1>
     </div>
@@ -250,7 +249,7 @@
   <!-- Top Nav -->
   <nav class="bg-slate-800 border-b border-slate-700 px-4 py-3 flex items-center gap-4 text-sm font-semibold">
   <button class="btn-glow page-link" data-page="home">
-  <img src="Image Assets/QuestCraft Logo.png" style="height: 40px; width:40px; border-radius: 20%; pointer-events: none;">
+  <img src="Image Assets/QuestCraft Logo.webp" style="height: 40px; width:40px; border-radius: 20%; pointer-events: none;">
 </button>
     <button style="border-radius: 15%;" data-page="math" class="page-link btn-glow">Math</button>
     <button style="border-radius: 15%;" data-page="ela" class="page-link btn-glow">ELA</button>
@@ -258,11 +257,11 @@
     <button style="border-radius: 15%;" data-page="profile" class="page-link btn-glow">Profile</button>
     <span class="ml-auto flex items-center gap-4 text-xs">
       <span class="flex items-center gap-1">
-        <img src="Image Assets/XP Icon.png" alt="XP" class="w-6 h-6">
+        <img src="Image Assets/XP Icon.webp" alt="XP" class="w-6 h-6">
         <span id="xpDisplay" class="font-bold">0</span>
       </span>
       <span class="flex items-center gap-1">
-        <img src="Image Assets/Coin Icon.png" alt="Coins" class="w-6 h-6">
+        <img src="Image Assets/Coin Icon.webp" alt="Coins" class="w-6 h-6">
         <span id="coinDisplay" class="font-bold">0</span>
       </span>
     </span>
@@ -278,7 +277,7 @@
 
       <div class="grid md:grid-cols-2 gap-6 mt-8">
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
-          <img src="Image Assets/Math Icon.png" alt="Math-Icon" style="height: 60px; width: 60px;">
+          <img src="Image Assets/Math Icon.webp" alt="Math-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">Math Quests</h2>
           <p class="text-sm text-slate-300">
             Grade‑based topics from visual apples to geometry with shapes.
@@ -290,7 +289,7 @@
         </div>
 
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
-          <img src="Image Assets/ELA Icon.png" alt="ELA-Icon" style="height: 60px; width: 60px;">
+          <img src="Image Assets/ELA Icon.webp" alt="ELA-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">ELA Quests</h2>
           <p class="text-sm text-slate-300">Reading passages and spelling (NEW UPDATE)</p>
           <button data-page="ela"
@@ -300,7 +299,7 @@
         </div>
 
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
-          <img src="Image Assets/Arcade Icon.png" alt="Game-Icon" style="height: 60px; width: 60px;">
+          <img src="Image Assets/Arcade Icon.webp" alt="Game-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">Games Arcade</h2>
           <p class="text-sm text-slate-300">Play inside the page with a 3‑minute timer.</p>
           <button data-page="games"
@@ -310,7 +309,7 @@
         </div>
 
         <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
-          <img src="Image Assets/Profile Icon.png" alt="Profile-Icon" style="height: 60px; width: 60px;">
+          <img src="Image Assets/Profile Icon.webp" alt="Profile-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">Profile Customization</h2>
           <p class="text-sm text-slate-300">Choose your avatar, pet, or just restart!</p>
           <button data-page="profile"
@@ -358,7 +357,7 @@
     <div class="grid md:grid-cols-2 gap-6">
       <button onclick="openElaReading()"
         class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:bg-slate-800 transition">
-        <img src="Image Assets/Reading Icon.png" alt="Reading-Icon" style="height: 60px; width: 60px;">
+        <img src="Image Assets/Reading Icon.webp" alt="Reading-Icon" style="height: 60px; width: 60px;">
         <h3 class="text-xl font-bold mb-3">Reading Practice</h3>
         <p class="text-slate-300 text-sm">
           Read passages and answer comprehension questions.
@@ -367,7 +366,7 @@
 
       <button onclick="openElaSpelling()"
         class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:bg-slate-800 transition">
-        <img src="Image Assets/Spelling Icon.png" alt="Spelling-Icon" style="height: 60px; width: 60px; margin-bottom: 10px;">
+        <img src="Image Assets/Spelling Icon.webp" alt="Spelling-Icon" style="height: 60px; width: 60px; margin-bottom: 10px;">
         <h3 class="text-xl font-bold mb-3">Spelling Practice</h3>
 
         <p class="text-slate-300 text-sm">
@@ -460,7 +459,7 @@
       <h2 class="text-2xl font-bold mt-4">Rewards Arcade</h2>
       <p class="text-sm text-slate-300">
         Earn
-        <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
+        <img src="Image Assets/Coin Icon.webp" class="inline w-4 h-4" alt="Coins">
         by answering questions correctly, then spend them on 3‑minute game passes. Games open inside the page.
       </p>
 
@@ -473,7 +472,7 @@
           <button class="open-game w-full font-black py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-slate-950 uppercase hover:shadow-lg hover:shadow-blue-600/20 active:scale-95 transition-all duration-150"
                   data-url="https://smashkarts.io/" data-cost="130">
             Play 3‑Mins (
-            <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
+            <img src="Image Assets/Coin Icon.webp" class="inline w-4 h-4" alt="Coins">
             130)
           </button>
         </div>
@@ -486,7 +485,7 @@
           <button class="open-game w-full font-black py-3 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-amber-500/20 active:scale-95 transition-all duration-150"
                   data-url="https://vectaria.io/" data-cost="90">
             Play 3‑Mins (
-            <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
+            <img src="Image Assets/Coin Icon.webp" class="inline w-4 h-4" alt="Coins">
             90)
           </button>
         </div>
@@ -499,7 +498,7 @@
           <button class="open-game w-full font-black py-3 rounded-xl bg-red-500 hover:bg-red-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-red-600/20 active:scale-95 transition-all duration-150"
                   data-url="https://blockblast.game/" data-cost="150">
             Play 3‑Mins (
-            <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
+            <img src="Image Assets/Coin Icon.webp" class="inline w-4 h-4" alt="Coins">
             150)
           </button>
         </div>
@@ -512,7 +511,7 @@
           <button class="open-game w-full font-black py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-slate-950 uppercase hover:shadow-lg hover:shadow-blue-600/20 active:scale-95 transition-all duration-150"
                   data-url="https://www.geometrydash.com/" data-cost="150">
             Play 3‑Mins (
-            <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
+            <img src="Image Assets/Coin Icon.webp" class="inline w-4 h-4" alt="Coins">
             150)
           </button>
         </div>
@@ -525,7 +524,7 @@
           <button class="open-game w-full font-black py-3 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-amber-500/20 active:scale-95 transition-all duration-150"
                   data-url="https://hexanaut.io/" data-cost="120">
             Play 3‑Mins (
-            <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
+            <img src="Image Assets/Coin Icon.webp" class="inline w-4 h-4" alt="Coins">
             120)
           </button>
         </div>
@@ -538,7 +537,7 @@
           <button class="open-game w-full font-black py-3 rounded-xl bg-red-500 hover:bg-red-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-red-600/20 active:scale-95 transition-all duration-150"
                   data-url="https://www.worldguessr.com/" data-cost="80">
             Play 3‑Mins (
-            <img src="Image Assets/Coin Icon.png" class="inline w-4 h-4" alt="Coins">
+            <img src="Image Assets/Coin Icon.webp" class="inline w-4 h-4" alt="Coins">
             80)
           </button>
         </div>
