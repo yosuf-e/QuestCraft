@@ -372,7 +372,7 @@ function loadElaData() {
   const submitBtn = document.createElement("button");
   submitBtn.textContent = "Submit Answers";
   // FIXED: Changed invalid 'text-white-900' to 'text-white'
-  submitBtn.className = "mt-2 px-3 py-2 font-black py-3 rounded-xl bg-violet-800 hover:bg-violet-600 text-white uppercase hover:shadow-lg hover:shadow-violet-600/20 active:scale-95 transition-all duration-150";
+  submitBtn.className = "mt-2 px-3 py-2 font-black py-3 rounded-none border-4 border-slate-950 bg-violet-800 text-white uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-violet-600 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none";
   submitBtn.addEventListener('click', () => {
     document.querySelectorAll('#elaQuestions input[type="radio"]').forEach(r => {
       r.disabled = true;
@@ -613,14 +613,14 @@ document.querySelectorAll('.open-game').forEach((btn) => {
 
 // Profile Logic
 let profileData = JSON.parse(localStorage.getItem("profileData")) || {
-  ownedCharacters: [0],
-  ownedPets: [0],
+  ownedCharacters: [],
+  ownedPets: [],
   equippedCharacter: '',
   equippedPet: '',
 };
 
-let charIndex = profileData.equippedCharacter || 0;
-let petIndex = profileData.equippedPet || 0;
+let charIndex = profileData.equippedCharacter || ;
+let petIndex = profileData.equippedPet || ;
 
 function coinText(amount) {
   return `<img src="Image Assets/Coin Icon.webp" class="inline w-5 h-5 mr-2" alt="Coins"> ${amount}`;
