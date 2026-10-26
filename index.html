@@ -20,7 +20,7 @@
   <script src="ela_data.js"></script>
   <script src="JS_Logic.js" defer></script>
   <style>
-  /* ---------- Splash overlay that reuses your animated gradient ---------- */
+  /* ---------- Splash Screen ---------- */
 .splash {
   position: fixed;
   inset: 0;
@@ -29,13 +29,12 @@
   place-items: center;
   overflow: hidden;
   pointer-events: auto;
-  transition: opacity 400ms ease, visibility 400ms ease;
+  transition: opacity 0ms, visibility 0ms; 
   opacity: 1;
   visibility: visible;
-  background: #17243f;
+  background: #0f172a; 
 }
 
-/* Inner container uses your .card look but tuned for splash */
 .splash-inner {
   position: relative;
   display: flex;
@@ -43,9 +42,10 @@
   align-items: center;
   gap: 18px;
   padding: 28px;
-  border-radius: 5%;
-  background: linear-gradient(180deg, rgba(30,35,42,0.95), rgba(20,24,28,0.9));
-  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  border-radius: 0;
+  border: 4px solid #020617;
+  background: #1e293b; 
+  box-shadow: 10px 10px 0px 0px #020617; 
   transform: translateY(0);
   max-width: min(420px, calc(100% - 48px));
   width: 75%;
@@ -65,15 +65,14 @@
   position: relative;
   width: 128px;
   height: 128px;
-  border-radius: 15%;
+  border-radius: 0;
   overflow: hidden;
-  border: 3px solid rgba(72,202,228,0.12);
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  border: 4px solid #020617;
+  background: #0f172a;
   display: grid;
   place-items: center;
 }
 
-/* Image fits the circle */
 .profile-photo img {
   width: 100%;
   height: 100%;
@@ -86,37 +85,32 @@
 .profile-photo::after {
   content: "";
   position: absolute;
-  top: -40%;
-  left: -120%;
-  width: 60%;
-  height: 220%;
-  transform: rotate(30deg) translateX(0);
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255,255,255,0) 100%);
-  filter: blur(6px);
-  opacity: 0.0;
+  top: 0;
+  left: -100%;
+  width: 32px; 
+  height: 100%;
+  background: #ffffff;
+  opacity: 0;
   pointer-events: none;
-  animation: shineSweep 1.5s ease-in-out infinite;
-  mix-blend-mode: screen;
+  animation: pixelGlint 2s steps(8) infinite;
+  mix-blend-mode: overlay;
 }
 
-/* Shine Animation */
-@keyframes shineSweep {
+/* Pixel Glint Animation */
+@keyframes pixelGlint {
   0% {
-    left: -120%;
+    left: -40%;
     opacity: 0;
   }
   10% {
-    opacity: 0.25;
+    opacity: 0.4;
   }
-  45% {
-    left: 120%;
-    opacity: 0.9;
+  40% {
+    left: 140%;
+    opacity: 0.4;
   }
-  70% {
-    opacity: 0.25;
-  }
-  100% {
-    left: 120%;
+  41%, 100% {
+    left: 140%;
     opacity: 0;
   }
 }
@@ -127,7 +121,8 @@
   font-size: 28px;
   color: #ffffff;
   font-weight: 900;
-  letter-spacing: -0.2px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 /* Loading dots container */
@@ -138,15 +133,16 @@
   margin-top: 6px;
 }
 
-/* Individual dots */
+/* Individual dots turn into jumping pixel block characters */
 .dot {
   width: 12px;
   height: 12px;
-  border-radius: 50%;
-  background: linear-gradient(180deg, #2382e8, #2ecbe8);
-  opacity: 0.25;
+  border-radius: 0; 
+  border: 2px solid #020617;
+  background: #3b82f6; 
+  opacity: 1; 
   transform: translateY(0);
-  animation: dotPulse 1s infinite ease-in-out;
+  animation: dotJump 0.8s infinite steps(2); 
 }
 
 /* Staggered delays */
@@ -154,11 +150,10 @@
 .dot-2 { animation-delay: 0.15s; }
 .dot-3 { animation-delay: 0.3s; }
 
-@keyframes dotPulse {
-  0% { transform: translateY(0); opacity: 0.25; }
-  30% { transform: translateY(-8px); opacity: 1; }
-  60% { transform: translateY(0); opacity: 0.6; }
-  100% { transform: translateY(0); opacity: 0.25; }
+@keyframes dotJump {
+  0% { transform: translateY(0); background: #3b82f6; }
+  50% { transform: translateY(-10px); background: #60a5fa; } /* Color change indicators */
+  100% { transform: translateY(0); background: #3b82f6; }
 }
 
 /* Fade-out state */
@@ -166,10 +161,10 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-} 
+}
 
-  /* Full-resolution Minecraft sky background */
-  .minecraft-sky-full {
+  /* Background */
+  .Retro-BG {
     background-image: url("Image%20Assets/Background.webp");
     background-size: cover;        /* keep full resolution */
     background-position: center;   /* keep centered */
@@ -179,7 +174,7 @@
   }
 
   /* Soft glow overlay */
-  .minecraft-sky-full::before {
+  .Retro-BG::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -243,7 +238,7 @@
   </div>
 </div>
 
-<body class="minecraft-sky-full text-slate-100 min-h-screen">
+<body class="Retro-BG text-slate-100 min-h-screen">
   <!-- Feedback Icon-->
    <div class="floating-element">
   <a href="https://forms.gle/ysrXLc3RittypYDYA" target="_blank" rel="noopener noreferrer">
@@ -251,7 +246,7 @@
     src="https://cdn-icons-gif.flaticon.com/14675/14675904.gif"
     title="Give us some Feedback! 😃" 
     alt="Feedback-Icon"
-    style="height: 50px; width: 50px; border-radius: 50%; cursor: pointer;"
+    style="height: 48px; width: 48px; border-radius: 50%; cursor: pointer;"
   ></a>
 </div>
 
@@ -285,45 +280,39 @@
       </div>
 
       <div class="grid md:grid-cols-2 gap-6 mt-8">
-        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
+        <div class="bg-slate-800 border-4 border-slate-950 p-6 space-y-2 shadow-[8px_8px_0px_0px_#420000]">
           <img src="Image%20Assets/Math%20Icon.webp" alt="Math-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">Math Quests</h2>
-          <p class="text-sm text-slate-300">
-            Grade‑based topics from visual apples to geometry with shapes.
-          </p>
           <button data-page="math"
-                  class="page-link w-full font-black py-3 rounded-xl bg-red-500 hover:bg-red-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-red-600/20 active:scale-95 transition-all duration-150">
+                  class="page-link w-full font-black py-3 border-4 border-slate-950 bg-red-500 text-white-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-red-400 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none">
             Start Math
           </button>
         </div>
 
-        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
+        <div class="bg-slate-800 border-4 border-slate-950 p-6 space-y-2 shadow-[8px_8px_0px_0px_#130042]">
           <img src="Image%20Assets/ELA%20Icon.webp" alt="ELA-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">ELA Quests</h2>
-          <p class="text-sm text-slate-300">Reading passages and spelling (NEW UPDATE)</p>
           <button data-page="ela"
-                  class="page-link w-full font-black py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-slate-950 uppercase hover:shadow-lg hover:shadow-blue-600/20 active:scale-95 transition-all duration-150">
+                  class="page-link w-full font-black py-3 border-4 border-slate-950 bg-blue-600 text-white-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-blue-500 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none">
             Start ELA
           </button>
         </div>
 
-        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
+        <div class="bg-slate-800 border-4 border-slate-950 p-6 space-y-2 shadow-[8px_8px_0px_0px_#423600]">
           <img src="Image%20Assets/Arcade%20Icon.webp" alt="Game-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">Games Arcade</h2>
-          <p class="text-sm text-slate-300">Play inside the page with a 3‑minute timer.</p>
           <button data-page="games"
-                  class="page-link w-full font-black py-3 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-amber-500/20 active:scale-95 transition-all duration-150">
+                  class="page-link w-full font-black py-3 border-4 border-slate-950 bg-yellow-500 text-white-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-yellow-400 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none">
             Open Arcade
           </button>
         </div>
 
-        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-2">
+        <div class="bg-slate-800 border-4 border-slate-950 p-6 space-y-2 relative after:absolute after:inset-0 after:z-[-1] after:translate-x-2 after:translate-y-2 after:bg-gradient-to-r after:from-red-500 after:via-green-500 after:to-blue-500 after:rounded-[inherit]">
           <img src="Image%20Assets/Profile%20Icon.webp" alt="Profile-Icon" style="height: 60px; width: 60px;">
           <h2 class="text-xl font-semibold">Profile Customization</h2>
-          <p class="text-sm text-slate-300">Choose your avatar, pet, or just restart!</p>
           <button data-page="profile"
-                  class="page-link btn-rainbow w-full font-black py-3 rounded-xl w-full hover:from-yellow-400 hover:to-amber-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-amber-500/20 active:scale-95 transition-all duration-150 ">
-            🚨 Beta Version
+                  class="page-link btn-rainbow w-full font-black py-3 border-4 border-slate-950 text-slate-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none">
+            OPEN PROFILE
           </button>
         </div>
       </div>
@@ -333,9 +322,9 @@
     <section id="page-math" class="space-y-6 hidden">
       <h2 class="text-2xl font-bold mt-4">Math Missions (Grades 1–6)</h2>
 
-      <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-4">
+      <div class="bg-slate-800 border-4 border-slate-950 p-4 space-y-4 shadow-[6px_6px_0px_0px_#420000]">
         <label class="block text-sm mb-1">Choose Grade:</label>
-        <select id="mathGrade" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm">
+        <select id="mathGrade" class="w-full bg-slate-900 border-4 border-slate-950 p-2 text-sm focus:outline-none focus:bg-slate-800">
           <option value="1">Grade 1 – Counting & Visual Addition (Apples)</option>
           <option value="2">Grade 2 – Patterns & Missing Numbers (Apples)</option>
           <option value="3">Grade 3 – Basic Multiplication & Division</option>
@@ -345,7 +334,7 @@
         </select>
 
         <button id="newMathQuestion"
-          class="w-full font-black py-3 rounded-xl bg-red-500 hover:bg-red-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-red-600/20 active:scale-95 transition-all duration-150">
+          class="w-full font-black py-3 border-4 border-slate-950 bg-red-500 text-white-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-red-400 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none">
           New Math Question
         </button>
 
@@ -361,11 +350,11 @@
 
     <!-- ELA HOME PAGE -->
 <section id="page-ela" class="hidden">
-  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 space-y-6">
+  <div class="bg-slate-800 border-4 border-slate-950 p-6 space-y-6 shadow-[8px_8px_0px_0px_#130042]">
     <h2 class="text-2xl font-bold text-center">ELA Quests</h2>
     <div class="grid md:grid-cols-2 gap-6">
       <button onclick="openElaReading()"
-        class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:bg-slate-800 transition">
+        class="bg-slate-900 border-4 border-slate-950 p-6 text-left hover:bg-slate-800 shadow-[6px_6px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_#020617] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none">
         <img src="Image%20Assets/Reading%20Icon.webp" alt="Reading-Icon" style="height: 60px; width: 60px;">
         <h3 class="text-xl font-bold mb-3">Reading Practice</h3>
         <p class="text-slate-300 text-sm">
@@ -374,7 +363,7 @@
       </button>
 
       <button onclick="openElaSpelling()"
-        class="bg-slate-900 border border-slate-700 rounded-xl p-6 text-left hover:bg-slate-800 transition">
+        class="bg-slate-900 border-4 border-slate-950 p-6 text-left hover:bg-slate-800 shadow-[6px_6px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_#020617] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none">
         <img src="Image%20Assets/Spelling%20Icon.webp" alt="Spelling-Icon" style="height: 60px; width: 60px; margin-bottom: 10px;">
         <h3 class="text-xl font-bold mb-3">Spelling Practice</h3>
 
@@ -391,24 +380,24 @@
 <section id="page-ela-reading" class="hidden">
   <button
     onclick="openElaHome()"
-    class="mb-4 px-3 py-2 rounded-lg bg-slate-700 hover:bg-slate-600">
+    class="mb-4 px-3 py-2 border-4 border-slate-950 bg-slate-700 hover:bg-slate-600 shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_#020617] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-none">
     ← Back
   </button>
-  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-4">
+  <div class="bg-slate-800 border-4 border-slate-950 p-4 space-y-4 shadow-[6px_6px_0px_0px_#130042]">
 
     <label class="block text-sm mb-1">
       Choose Level:
     </label>
 
     <select id="elaLevel"
-      class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm">
+      class="w-full bg-slate-900 border-4 border-slate-950 p-2 text-sm focus:outline-none focus:bg-slate-800">
       <option value="elementary">Elementary</option>
       <option value="middle">Middle School</option>
       <option value="high">High School</option>
     </select>
 
     <button id="loadEla"
-      class="w-full font-black py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-slate-950 uppercase hover:shadow-lg hover:shadow-blue-600/20 active:scale-95 transition-all duration-150">
+      class="w-full font-black py-3 border-4 border-slate-950 bg-blue-600 text-white-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-blue-500 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none">
       Load Reading & Questions
     </button>
     <div id="elaContent" class="mt-3 space-y-3">
@@ -438,22 +427,22 @@
 <section id="page-ela-spelling" class="hidden">
   <button
     onclick="openElaHome()"
-    class="mb-4 px-3 py-2 rounded-lg bg-slate-700 hover:bg-slate-600">
+    class="mb-4 px-3 py-2 border-4 border-slate-950 bg-slate-700 hover:bg-slate-600 shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_#020617] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-none">
     ← Back
   </button>
-  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4">
+  <div class="bg-slate-800 border-4 border-slate-950 p-4 shadow-[6px_6px_0px_0px_#130042]">
     <h2 class="text-xl font-bold mb-4">
       Spelling Practice
     </h2>
     <button id="playWord"
-      class="w-full font-black py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-emerald-500/20 active:scale-95 transition-all duration-150">
+      class="w-full font-black py-3 border-4 border-slate-950 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none">
       🔊 Play Word
     </button>
     <div id="spellingBoxes"
       class="flex justify-center mt-4 gap-2 flex-wrap mb-4">
     </div>
     <button id="checkSpelling"
-      class="w-full font-black py-3 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-amber-500/20 active:scale-95 transition-all duration-150">
+      class="w-full font-black py-3 border-4 border-slate-950 bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-slate-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none">
       Check Answer
     </button>
     <p id="spellingFeedback"
@@ -474,11 +463,11 @@
 
       <div class="grid md:grid-cols-3 gap-4">
         <!-- Smash Karts -->
-        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+        <div class="bg-slate-800 border-4 border-slate-950 p-4 space-y-2 shadow-[6px_6px_0px_0px_#020617]">
           <img src="https://imgs.crazygames.com/smash-karts_1x1/20260210123937/smash-karts_1x1-cover?format=auto&quality=100&metadata=none&width=1200"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">Smash Karts</h3>
-          <button class="open-game w-full font-black py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-slate-950 uppercase hover:shadow-lg hover:shadow-blue-600/20 active:scale-95 transition-all duration-150"
+          <button class="open-game w-full font-black py-3 border-4 border-slate-950 bg-blue-600 text-white-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-blue-500 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none"
                   data-url="https://smashkarts.io/" data-cost="130">
             Play 3‑Mins (
             <img src="Image%20Assets/Coin%20Icon.webp" class="inline w-4 h-4" alt="Coins">
@@ -487,11 +476,11 @@
         </div>
 
         <!-- Adventure Game -->
-        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+        <div class="bg-slate-800 border-4 border-slate-950 p-4 space-y-2 shadow-[6px_6px_0px_0px_#020617]">
           <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=188,height=188,fit=cover,f=auto/94f0d123275fb73da13aaed4a2725184/adventure-logo.png"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">Adventure Game</h3>
-          <button class="open-game w-full font-black py-3 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-amber-500/20 active:scale-95 transition-all duration-150"
+          <button class="open-game w-full font-black py-3 border-4 border-slate-950 bg-yellow-500 text-white-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-yellow-400 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none"
                   data-url="https://vectaria.io/" data-cost="90">
             Play 3‑Mins (
             <img src="Image%20Assets/Coin%20Icon.webp" class="inline w-4 h-4" alt="Coins">
@@ -500,11 +489,11 @@
         </div>
 
         <!-- Block Blast -->
-        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+        <div class="bg-slate-800 border-4 border-slate-950 p-4 space-y-2 shadow-[6px_6px_0px_0px_#020617]">
           <img src="https://play-lh.googleusercontent.com/Abzm9CjXi_DZjGzalQqVFMNZL8Wcx4uxtT5wcGOBaclbjvb3UYA2Bi6s6ff2SFRktdXehBsocFKkGUeIffUkLg=w240-h480-rw"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">Block Blast</h3>
-          <button class="open-game w-full font-black py-3 rounded-xl bg-red-500 hover:bg-red-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-red-600/20 active:scale-95 transition-all duration-150"
+          <button class="open-game w-full font-black py-3 border-4 border-slate-950 bg-red-500 text-white-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-red-400 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none"
                   data-url="https://blockblast.game/" data-cost="150">
             Play 3‑Mins (
             <img src="Image%20Assets/Coin%20Icon.webp" class="inline w-4 h-4" alt="Coins">
@@ -513,11 +502,11 @@
         </div>
 
         <!-- Geometry Dash -->
-        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+        <div class="bg-slate-800 border-4 border-slate-950 p-4 space-y-2 shadow-[6px_6px_0px_0px_#020617]">
           <img src="https://play-lh.googleusercontent.com/tF6siCn3bM7JmXqB_iLqZm17DCI-C2h5X8I_n1-bqmkMJrN1sm2ZDrj8IAqSFtQcF85QX1Puvhsi_vcnSmmzAOk=w240-h480-rw"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">Geometry Dash</h3>
-          <button class="open-game w-full font-black py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-slate-950 uppercase hover:shadow-lg hover:shadow-blue-600/20 active:scale-95 transition-all duration-150"
+          <button class="open-game w-full font-black py-3 border-4 border-slate-950 bg-blue-600 text-white-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-blue-500 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none"
                   data-url="https://www.geometrydash.com/" data-cost="150">
             Play 3‑Mins (
             <img src="Image%20Assets/Coin%20Icon.webp" class="inline w-4 h-4" alt="Coins">
@@ -526,11 +515,11 @@
         </div>
 
         <!-- Hexanaut -->
-        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+        <div class="bg-slate-800 border-4 border-slate-950 p-4 space-y-2 shadow-[6px_6px_0px_0px_#020617]">
           <img src="https://play-lh.googleusercontent.com/j-hcJwi_kJD8HKBRfF0IX7f5rhzVeqsZorkN0_4yDaA-h1hiDY_1n1P6-k3DyyELxOl0vRM956KsqK9meWdV=w240-h480-rw"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">Hexanaut io</h3>
-          <button class="open-game w-full font-black py-3 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-amber-500/20 active:scale-95 transition-all duration-150"
+          <button class="open-game w-full font-black py-3 border-4 border-slate-950 bg-yellow-500 text-white-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-yellow-400 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none"
                   data-url="https://hexanaut.io/" data-cost="120">
             Play 3‑Mins (
             <img src="Image%20Assets/Coin%20Icon.webp" class="inline w-4 h-4" alt="Coins">
@@ -539,11 +528,11 @@
         </div>
 
         <!-- World Guessr -->
-        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+        <div class="bg-slate-800 border-4 border-slate-950 p-4 space-y-2 shadow-[6px_6px_0px_0px_#020617]">
           <img src="https://imgs.crazygames.com/worldguessr_1x1/20241018082521/worldguessr_1x1-cover?format=auto&quality=100&metadata=none&width=1200"
                height="100" width="100" class="rounded-xl mx-auto">
           <h3 class="text-sm font-semibold text-center">World Guessr</h3>
-          <button class="open-game w-full font-black py-3 rounded-xl bg-red-500 hover:bg-red-400 text-slate-950 uppercase hover:shadow-lg hover:shadow-red-600/20 active:scale-95 transition-all duration-150"
+          <button class="open-game w-full font-black py-3 border-4 border-slate-950 bg-red-500 text-white-950 uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-red-400 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none"
                   data-url="https://www.worldguessr.com/" data-cost="80">
             Play 3‑Mins (
             <img src="Image%20Assets/Coin%20Icon.webp" class="inline w-4 h-4" alt="Coins">
@@ -554,19 +543,21 @@
 
       <!-- Embedded game area -->
       <div id="gameContainer" class="mt-6 hidden">
-        <div class="flex items-center justify-between mb-2">
-          <h3 class="text-lg font-semibold">Game Session (3 Minutes)</h3>
-          <span class="text-sm">Time left: <span id="gameTimer">03:00</span></span>
+        <div class="flex items-center justify-between mb-4 text-slate-50 font-black uppercase tracking-wider">
+          <h3 class="text-lg">Game Session (3 Minutes)</h3>
+          <span class="text-sm bg-slate-950 px-3 py-1 border-2 border-slate-700">Time left: <span id="gameTimer"
+              class="text-yellow-400 font-mono">03:00</span></span>
         </div>
-        <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden">
-          <iframe id="gameFrame" src="" class="w-full h-[560px]" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"></iframe>
+        <div class="bg-slate-800 border-4 border-slate-950 overflow-hidden shadow-[8px_8px_0px_0px_#423600]">
+          <iframe id="gameFrame" src="" class="w-full h-[560px]"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"></iframe>
         </div>
       </div>
-    </section>
+      </section>
 
   <!-- PROFILE CUSTOMIZATION PAGE -->
 <section id="page-profile">
-  <div class="max-w-3xl mx-auto bg-slate-800/90 border border-slate-700/50 p-8 rounded-2xl shadow-2xl backdrop-blur-sm">
+  <div class="max-w-3xl mx-auto bg-slate-800 border-4 border-slate-950 p-8 relative after:absolute after:inset-0 after:z-[-1] after:translate-x-3 after:translate-y-3 after:bg-gradient-to-r after:from-red-500 after:via-green-500 after:to-blue-500 after:rounded-[inherit]">
     <h2 class="text-3xl font-black mb-8 text-center tracking-wide bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-200 bg-clip-text text-transparent">
       PROFILE CUSTOMIZATION
     </h2>
@@ -575,7 +566,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 relative">
       
       <!-- CHARACTER SECTION -->
-      <div class="flex flex-col items-center justify-between min-h-[360px] bg-slate-900/40 p-6 rounded-xl border border-slate-700/30">
+      <div class="flex flex-col items-center justify-between min-h-[360px] bg-slate-900 p-6 border-4 border-slate-950 shadow-[6px_6px_0px_0px_#020617]">
         <div>
           <h4 class="text-xl font-bold text-blue-400">CHARACTER</h4>
         </div>
@@ -610,7 +601,7 @@
       <div class="hidden md:block absolute left-1/2 top-4 bottom-4 w-px bg-gradient-to-b from-transparent via-slate-700 to-transparent opacity-60"></div>
 
       <!-- PET SECTION -->
-      <div class="flex flex-col items-center justify-between min-h-[360px] bg-slate-900/40 p-6 rounded-xl border border-slate-700/30">
+      <div class="flex flex-col items-center justify-between min-h-[360px] bg-slate-900 p-6 border-4 border-slate-950 shadow-[6px_6px_0px_0px_#020617]">
         <div>
           <h4 class="text-xl font-bold text-emerald-400">PET</h4>
         </div>
@@ -648,7 +639,7 @@
   <!-- RESET INFRASTRUCTURE BUTTON -->
   <div class="max-w-3xl mx-auto mt-8 text-center">
     <button onclick="resetProgress()"
-            class="px-5 py-2.5 bg-red-950 hover:bg-red-900/60 border border-red-800/40 text-red-400 text-xs font-bold tracking-widest uppercase rounded-lg transition-colors duration-150">
+            class="px-5 py-2.5 bg-red-950 hover:bg-red-900 border-4 border-slate-950 text-red-400 text-xs font-bold tracking-widest uppercase shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_#020617] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-none">
       Reset All Profile Progress
     </button>
   </div>
