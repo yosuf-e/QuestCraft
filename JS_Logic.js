@@ -763,7 +763,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateUI();
 });
 
-// Sound effect on click (FIXED: Using .closest('button') to support child elements)
+// Sound effect on click
 const clickSound = document.getElementById('btnClickSound');
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('button');
@@ -775,9 +775,11 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Global Reset Progress Function (FIXED: Preserved initial index [0] ownership)
+// Global Reset Progress Function
 window.resetProgress = function() {
   if (!confirm("Are you sure you want to reset all profile progress?")) return;
+
+  if (soundCorrect) { soundCorrect.currentTime = 0; soundCorrect.play(); }
 
   profileData = {
     ownedCharacters: [0],
