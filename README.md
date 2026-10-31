@@ -25,3 +25,7 @@
 ## Profile Section Cutomize:
 - Profile Chracter
 - Pet
+
+## Daily & Weekly Quests/Tasks Reward System
+<img width="443" height="414" alt="image" src="https://github.com/user-attachments/assets/c8672460-9879-4b1e-8190-f5cb055f2977" />
+
