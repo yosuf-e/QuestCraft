@@ -226,6 +226,15 @@
   right: 20px;
   z-index: 9999; 
 }
+
+/* Hide scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 </style>
 
 </head>
@@ -257,6 +266,43 @@
     style="height: 48px; width: 48px; border-radius: 50%; cursor: pointer;"
   ></a>
 </div>
+<!----------------------------
+  QUESTS AND REWARDS SECTION
+------------------------------->
+  <!-- Icon -->
+  <div class="fixed bottom-14 left-4 z-50">
+    <button id="openQuestsModal" title="Quests & Rewards" class="relative group bg-slate-800 border-4 border-slate-950 p-2.5 rounded-xl shadow-[4px_4px_0px_0px_#020617] hover:bg-slate-700 active:translate-x-1 active:translate-y-1 transition-all">
+      <img src="Image%20Assets/Chest%20Icon.webp" alt="Chest Icon" style="transform: scale(1.5);" class="w-10 h-10 object-contain select-none pointer-events-none">
+      <span id="questNotificationBadge" class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] font-black px-1.5 py-0.5 border-2 border-slate-950 rounded-full hidden">0</span>
+    </button>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div id="questsModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+    <div class="bg-slate-900 border-4 border-slate-950 w-full max-w-2xl max-h-[85vh] flex flex-col shadow-[12px_12px_0px_0px_#020617] overflow-hidden">
+      <!-- Header -->
+      <div class="bg-slate-800 border-b-4 border-slate-950 p-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="Image%20Assets/Chest%20Icon.webp" alt="Chest" class="w-8 h-8 object-contain">
+          <h3 class="text-2xl font-black text-yellow-400 tracking-wider" style="font-family: 'Jersey 25';">QUESTS & REWARDS</h3>
+        </div>
+        <button id="closeQuestsModal" class="px-3 py-1 bg-red-600 hover:bg-red-500 border-2 border-slate-950 text-white font-black text-sm uppercase shadow-[2px_2px_0px_0px_#020617] active:translate-x-0.5 active:translate-y-0.5">X</button>
+      </div>
+      
+      <!-- Tabs -->
+      <div class="flex border-b-4 border-slate-950 bg-slate-950">
+        <button id="tabDailyBtn" class="flex-1 py-3 font-black text-sm uppercase bg-amber-500 text-slate-950 border-r-2 border-slate-950 transition-colors" onclick="switchQuestTab('daily')">Daily Quests</button>
+        <button id="tabWeeklyBtn" class="flex-1 py-3 font-black text-sm uppercase bg-slate-800 text-slate-300 border-l-2 border-slate-950 transition-colors" onclick="switchQuestTab('weekly')">Weekly Quests</button>
+      </div>
+
+      <!-- Quest Lists -->
+      <div class="p-4 overflow-y-auto space-y-4 flex-1 bg-slate-900/95 no-scrollbar">
+        <div id="dailyQuestsContainer" class="space-y-3"></div>
+        <div id="weeklyQuestsContainer" class="space-y-3 hidden"></div>
+      </div>
+    </div>
+  </div>
+  <!----------- END ----------->
 
   <!-- Top Nav -->
   <nav class="bg-slate-800 border-b border-slate-700 px-4 py-3 flex items-center gap-4 text-sm font-semibold">
