@@ -2,7 +2,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   const bgMusic = document.getElementById('bgMusic');
   if (bgMusic) {
-    bgMusic.volume = 0.02; // 2% volume
+    bgMusic.volume = 0.02; // volume
     bgMusic.play().catch(() => {
       document.body.addEventListener('click', () => {
         bgMusic.play();
@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// XP & Coins (persisted)
+// XP & Coins
 let xp = parseInt(localStorage.getItem('xp') || '10', 10);
 let coins = parseInt(localStorage.getItem('coins') || '10', 10);
 const xpDisplay = document.getElementById('xpDisplay');
@@ -33,6 +33,8 @@ function updateXPDisplay() {
 function addXP(amount) {
   xp += amount;
   updateXPDisplay();
+  incrementQuestProgress('daily', 5, amount);
+  incrementQuestProgress('weekly', 5, amount);
 }
 
 function addCoins(amount) {
@@ -80,7 +82,195 @@ document.querySelectorAll('.page-link').forEach(btn => {
 });
 showPage('home'); // default
 
+// ===========================================
+// QUEST & TASK REWARD SYSTEM CONFIG & LOGIC
+// ===========================================
+function getDefaultQuests() {
+  return {
+    daily: [
+      { id: 'd0', title: 'Math Marathon', desc: 'Complete 10 Math Quests today', target: 10, current: 0, rewardCoins: 200, rewardXP: 350, completed: false, claimed: false },
+      { id: 'd1', title: 'Avid Reader', desc: 'Complete 5 ELA Reading Sessions', target: 5, current: 0, rewardCoins: 300, rewardXP: 450, completed: false, claimed: false },
+      { id: 'd2', title: 'Spelling Master', desc: 'Spell 15 Words Correctly', target: 15, current: 0, rewardCoins: 250, rewardXP: 400, completed: false, claimed: false },
+      { id: 'd3', title: 'High Roller', desc: 'Spend 500 Coins in the Arcade', target: 500, current: 0, rewardCoins: 400, rewardXP: 500, completed: false, claimed: false },
+      { id: 'd4', title: 'Wardrobe Overhaul', desc: 'Unlock or Equip 3 Customization Items', target: 3, current: 0, rewardCoins: 350, rewardXP: 450, completed: false, claimed: false },
+      { id: 'd5', title: 'XP Titan', desc: 'Earn 500 Total XP Today', target: 500, current: 0, rewardCoins: 450, rewardXP: 500, completed: false, claimed: false }
+    ],
+    weekly: [
+      { id: 'w0', title: 'Grand Math Architect', desc: 'Complete 75 Math Quests this week', target: 75, current: 0, rewardCoins: 500, rewardXP: 500, completed: false, claimed: false },
+      { id: 'w1', title: 'Literary Legend', desc: 'Complete 35 ELA Reading Quests', target: 35, current: 0, rewardCoins: 500, rewardXP: 500, completed: false, claimed: false },
+      { id: 'w2', title: 'Lexicon Overlord', desc: 'Spell 100 Words Correctly', target: 100, current: 0, rewardCoins: 500, rewardXP: 500, completed: false, claimed: false },
+      { id: 'w3', title: 'Arcade Addict', desc: 'Play 25 Arcade Game Sessions', target: 25, current: 0, rewardCoins: 500, rewardXP: 500, completed: false, claimed: false },
+      { id: 'w4', title: 'Ultimate Collector', desc: 'Unlock 5 New Characters or Pets', target: 5, current: 0, rewardCoins: 500, rewardXP: 500, completed: false, claimed: false },
+      { id: 'w5', title: 'Mythic XP Champion', desc: 'Earn 5,000 Total XP This Week', target: 5000, current: 0, rewardCoins: 500, rewardXP: 500, completed: false, claimed: false }
+    ]
+  };
+}
+
+let questData = JSON.parse(localStorage.getItem('questSystemData')) || getDefaultQuests();
+
+function saveQuestData() {
+  localStorage.setItem('questSystemData', JSON.stringify(questData));
+}
+
+function updateQuestBadge() {
+  const badge = document.getElementById('questNotificationBadge');
+  if (!badge) return;
+  let claimableCount = 0;
+  ['daily', 'weekly'].forEach(type => {
+    questData[type].forEach(q => {
+      if (q.completed && !q.claimed) claimableCount++;
+    });
+  });
+  if (claimableCount > 0) {
+    badge.textContent = claimableCount;
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+}
+
+function renderQuests() {
+  const dailyContainer = document.getElementById('dailyQuestsContainer');
+  const weeklyContainer = document.getElementById('weeklyQuestsContainer');
+  if (!dailyContainer || !weeklyContainer) return;
+
+  dailyContainer.innerHTML = '';
+  weeklyContainer.innerHTML = '';
+
+  questData.daily.forEach((q, idx) => {
+    dailyContainer.appendChild(createQuestCard(q, 'daily', idx));
+  });
+
+  questData.weekly.forEach((q, idx) => {
+    weeklyContainer.appendChild(createQuestCard(q, 'weekly', idx));
+  });
+
+  updateQuestBadge();
+}
+
+function createQuestCard(q, type, idx) {
+  const card = document.createElement('div');
+  const isCompleted = q.completed;
+  const isClaimed = q.claimed;
+  const progressPercent = Math.min(100, Math.floor((q.current / q.target) * 100));
+
+  // Daily uses amber, Weekly uses blue theme
+  const badgeBg = type === 'daily' ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' : 'bg-blue-500/20 text-blue-300 border-blue-500/40';
+
+  card.className = `bg-slate-800 border-4 border-slate-950 p-4 space-y-3 shadow-[4px_4px_0px_0px_#020617]`;
+
+  let buttonHtml = '';
+  if (isClaimed) {
+    buttonHtml = `<button disabled class="w-full font-black py-2 rounded-lg bg-slate-700 text-slate-400 text-xs uppercase cursor-not-allowed border border-slate-600">Claimed</button>`;
+  } else if (isCompleted) {
+    buttonHtml = `<button onclick="claimQuest('${type}', ${idx})" class="w-full font-black py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs uppercase shadow-[3px_3px_0px_0px_#020617] active:translate-x-0.5 active:translate-y-0.5 transition-none">Claim Reward!</button>`;
+  } else {
+    buttonHtml = `<button disabled class="w-full font-black py-2 rounded-lg bg-slate-800 text-slate-500 text-xs uppercase cursor-not-allowed border border-slate-700">In Progress (${q.current}/${q.target})</button>`;
+  }
+
+  card.innerHTML = `
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-xs uppercase px-2 py-0.5 rounded border font-black ${badgeBg}">${type === 'daily' ? 'Daily' : 'Weekly'}</span>
+        <h4 class="font-bold text-sm text-slate-100">${q.title}</h4>
+      </div>
+      <div class="flex items-center gap-2 text-xs font-bold">
+        <span class="flex items-center gap-1 text-yellow-400"><img src="Image%20Assets/Coin%20Icon.webp" class="w-4 h-4" alt="Coins">+${q.rewardCoins}</span>
+        <span class="flex items-center gap-1 text-cyan-400"><img src="Image%20Assets/XP%20Icon.webp" class="w-4 h-4" alt="XP">+${q.rewardXP}</span>
+      </div>
+    </div>
+    <p class="text-xs text-slate-300">${q.desc}</p>
+    <div class="space-y-1">
+      <div class="flex justify-between text-[10px] text-slate-400 font-bold">
+        <span>Progress</span>
+        <span>${Math.min(q.current, q.target)} / ${q.target}</span>
+      </div>
+      <div class="w-full bg-slate-950 h-3 border-2 border-slate-950 overflow-hidden">
+        <div class="h-full ${type === 'daily' ? 'bg-amber-500' : 'bg-blue-500'} transition-all duration-300" style="width: ${progressPercent}%;"></div>
+      </div>
+    </div>
+    ${buttonHtml}
+  `;
+  return card;
+}
+
+function incrementQuestProgress(type, questIndex, amount = 1) {
+  if (!questData[type] || !questData[type][questIndex]) return;
+  const q = questData[type][questIndex];
+  if (q.completed) return;
+
+  q.current += amount;
+  if (q.current >= q.target) {
+    q.current = q.target;
+    q.completed = true;
+    if (soundCorrect) { soundCorrect.currentTime = 0; soundCorrect.play().catch(()=>{}); }
+    launchConfetti();
+  }
+  saveQuestData();
+  renderQuests();
+}
+
+window.claimQuest = function(type, idx) {
+  const q = questData[type][idx];
+  if (!q.completed || q.claimed) return;
+
+  q.claimed = true;
+  addCoins(q.rewardCoins);
+  addXP(q.rewardXP);
+  if (soundCorrect) { soundCorrect.currentTime = 0; soundCorrect.play().catch(()=>{}); }
+  launchConfetti();
+  saveQuestData();
+  renderQuests();
+};
+
+function switchQuestTab(tab) {
+  const dailyBtn = document.getElementById('tabDailyBtn');
+  const weeklyBtn = document.getElementById('tabWeeklyBtn');
+  const dailyContainer = document.getElementById('dailyQuestsContainer');
+  const weeklyContainer = document.getElementById('weeklyQuestsContainer');
+
+  if (tab === 'daily') {
+    dailyBtn.className = 'flex-1 py-3 font-black text-sm uppercase bg-amber-500 text-slate-950 border-r-2 border-slate-950 transition-colors';
+    weeklyBtn.className = 'flex-1 py-3 font-black text-sm uppercase bg-slate-800 text-slate-300 border-l-2 border-slate-950 transition-colors';
+    dailyContainer.classList.remove('hidden');
+    weeklyContainer.classList.add('hidden');
+  } else {
+    weeklyBtn.className = 'flex-1 py-3 font-black text-sm uppercase bg-blue-600 text-slate-950 border-l-2 border-slate-950 transition-colors';
+    dailyBtn.className = 'flex-1 py-3 font-black text-sm uppercase bg-slate-800 text-slate-300 border-r-2 border-slate-950 transition-colors';
+    weeklyContainer.classList.remove('hidden');
+    dailyContainer.classList.add('hidden');
+  }
+}
+
+// Modal wiring
+document.addEventListener('DOMContentLoaded', () => {
+  const openBtn = document.getElementById('openQuestsModal');
+  const closeBtn = document.getElementById('closeQuestsModal');
+  const modal = document.getElementById('questsModal');
+
+  if (openBtn && modal) {
+    openBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+      renderQuests();
+    });
+  }
+  if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+  }
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.add('hidden');
+    });
+  }
+
+  renderQuests();
+});
+
+//==============//
 // Math logic
+//=============//
 const mathGradeSelect = document.getElementById('mathGrade');
 const mathQuestionText = document.getElementById('mathQuestionText');
 const mathVisual = document.getElementById('mathVisual');
@@ -248,6 +438,10 @@ function generateMathQuestion(grade) {
         addXP(10);
         launchConfetti();
 
+        // Increment Math Quests
+        incrementQuestProgress('daily', 0, 1);
+        incrementQuestProgress('weekly', 0, 1);
+
         setTimeout(() => {
           generateMathQuestion(currentGrade);
         }, 1000);
@@ -302,7 +496,9 @@ if (newMathBtn) {
 }
 if (mathGradeSelect) generateMathQuestion(parseInt(mathGradeSelect.value, 10));
 
+//=====================//
 // ELA LOGIC (READING)
+//=====================//
 const elaLevelSelect = document.getElementById('elaLevel');
 const elaCitation = document.getElementById('elaCitation');
 const elaText = document.getElementById('elaText');
@@ -371,7 +567,6 @@ function loadElaData() {
 
   const submitBtn = document.createElement("button");
   submitBtn.textContent = "Submit Answers";
-  // FIXED: Changed invalid 'text-white-900' to 'text-white'
   submitBtn.className = "mt-2 px-3 py-2 font-black py-3 rounded-none border-4 border-slate-950 bg-violet-800 text-white uppercase shadow-[6px_6px_0px_0px_#020617] hover:bg-violet-600 hover:shadow-[4px_4px_0px_0px_#020617] hover:translate-x-[2px] hover:translate-y-[2px] active:translate-x-[6px] active:translate-y-[6px] active:shadow-none transition-none";
   submitBtn.addEventListener('click', () => {
     document.querySelectorAll('#elaQuestions input[type="radio"]').forEach(r => {
@@ -397,6 +592,10 @@ function loadElaData() {
       addCoins(30);
       addXP(30);
       launchConfetti();
+
+      // Increment ELA Reading Quests
+      incrementQuestProgress('daily', 1, 1);
+      incrementQuestProgress('weekly', 1, 1);
 
       setTimeout(() => {
         loadElaData();
@@ -444,7 +643,6 @@ let spellingWords = [];
 let remainingWords = [];
 let currentWord = "";
 
-// Initialize spelling words safely from window.ELA_DATA
 function initSpelling() {
   if (window.ELA_DATA && window.ELA_DATA.spellingWords) {
     spellingWords = window.ELA_DATA.spellingWords;
@@ -475,7 +673,6 @@ function makeBoxes(wordLength) {
 }
 
 function generateSpellingWord() {
-  // If words haven't been loaded yet or list ran out, re-initialize
   if (remainingWords.length === 0) {
     if (spellingWords.length === 0) initSpelling();
     
@@ -501,7 +698,6 @@ function generateSpellingWord() {
   speechSynthesis.speak(utter);
 }
 
-// Bind buttons once DOM is ready
 const playWordBtn = document.getElementById("playWord");
 if (playWordBtn) {
   playWordBtn.addEventListener("click", () => {
@@ -531,6 +727,10 @@ if (checkSpellingBtn) {
       addCoins(20);
       addXP(20);
 
+      // Increment Spelling Quests
+      incrementQuestProgress('daily', 2, 1);
+      incrementQuestProgress('weekly', 2, 1);
+
       launchConfetti();
       if (soundCorrect) {
         soundCorrect.currentTime = 0;
@@ -553,10 +753,11 @@ if (checkSpellingBtn) {
   });
 }
 
-// Call initialization on load to populate the initial pool
 initSpelling();
 
+//================//
 // Games logic
+//================//
 const gameContainer = document.getElementById('gameContainer');
 const gameFrame = document.getElementById('gameFrame');
 const gameTimerDisplay = document.getElementById('gameTimer');
@@ -603,6 +804,11 @@ document.querySelectorAll('.open-game').forEach((btn) => {
     if (coins >= cost) {
       coins -= cost;
       updateCoinDisplay();
+
+      // Increment Arcade Quests (coins spent & sessions played)
+      incrementQuestProgress('daily', 3, cost);
+      incrementQuestProgress('weekly', 3, 1);
+
       startGameSession(url);
     } else {
       alert(`You need ${cost} coins to play this game. Keep learning!`);
@@ -611,7 +817,9 @@ document.querySelectorAll('.open-game').forEach((btn) => {
   });
 });
 
+//================//
 // Profile Logic
+//================//
 let profileData = JSON.parse(localStorage.getItem("profileData")) || {
   ownedCharacters: [],
   ownedPets: [],
@@ -672,7 +880,7 @@ function updateUI() {
   if (!characterPreview || !petPreview) return;
 
   // --- Character Block Logic ---
-  characterPreview.src = characters[charIndex].img; // FIXED: Removed duplicate assignment
+  characterPreview.src = characters[charIndex].img;
   if (profileData.equippedCharacter === charIndex) {
     characterCost.innerHTML = `<span class="text-xs uppercase px-2 py-0.5 bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-md font-black tracking-widest">Active</span>`;
     characterButton.textContent = "Equipped";
@@ -734,6 +942,10 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCoinDisplay();
         profileData.ownedCharacters.push(charIndex);
         launchConfetti();
+
+        // Increment Customization Quests
+        incrementQuestProgress('daily', 4, 1);
+        incrementQuestProgress('weekly', 4, 1);
       }
 
       profileData.equippedCharacter = charIndex;
@@ -752,6 +964,10 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCoinDisplay();
         profileData.ownedPets.push(petIndex);
         launchConfetti();
+
+        // Increment Customization Quests
+        incrementQuestProgress('daily', 4, 1);
+        incrementQuestProgress('weekly', 4, 1);
       }
 
       profileData.equippedPet = petIndex;
@@ -797,6 +1013,12 @@ window.resetProgress = function() {
   updateXPDisplay();
   updateCoinDisplay();
 
+  // Reset Quest Progress
+  questData = getDefaultQuests();
+  saveQuestData();
+  renderQuests();
+  saveQuestData();
+  renderQuests();
   updateUI();
   launchConfetti();
 };
@@ -836,7 +1058,7 @@ function showPage(name) {
     if (el) el.classList.toggle('hidden', p !== name);
   });
 
-  // NEW: Show footer ONLY if the current page is 'home'
+  // SHOW FOOTER ONLY AT HOME PAGE
   const mainFooter = document.getElementById('mainFooter');
   if (mainFooter) {
     mainFooter.classList.toggle('hidden', name !== 'home');
