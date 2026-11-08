@@ -1064,3 +1064,53 @@ function showPage(name) {
     mainFooter.classList.toggle('hidden', name !== 'home');
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('UpdatesModal');
+  const closeBtn = document.getElementById('closeUpdatesModal');
+  
+  // Find the Facebook iframe inside the modal
+  const videoIframe = modal ? modal.querySelector('iframe') : null;
+
+  // Automatically trigger the popup layout on window load execution
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  // Dismissal action handler that completely stops the video
+  function dismissModal() {
+    if (modal) {
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+      
+      // Force reset the iframe src attribute to kill the video session completely
+      if (videoIframe) {
+        const currentSrc = videoIframe.src;
+        videoIframe.src = '';         // Wipe the frame source
+        videoIframe.src = currentSrc;  // Re-inject it so it's fresh for next time
+      }
+    }
+  }
+
+  // Bind close action to click and escape controls
+  if (closeBtn) {
+    closeBtn.addEventListener('click', dismissModal);
+  }
+
+  // Closes if clicking directly on the blurred backing overlay area
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        dismissModal();
+      }
+    });
+  }
+
+  // Structural accessibility escape handler
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+      dismissModal();
+    }
+  });
+});
