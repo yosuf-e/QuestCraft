@@ -21,6 +21,7 @@
 <meta name="google-site-verification" content="DWbSZVRXh4_7Z1F5AaHfAcRy3DU4LpDhfpvfz-tVTu8" />
 <link rel="canonical" href="https://questcraft.pages.dev/" />
 
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="https://questcraft.pages.dev/Image%20Assets/QuestCraft%20Logo.webp">
   <link rel="apple-touch-icon" href="https://questcraft.pages.dev/Image%20Assets/QuestCraft%20Logo.webp">
@@ -262,12 +263,43 @@
   <a href="https://forms.gle/ysrXLc3RittypYDYA" target="_blank" rel="noopener noreferrer">
   <img 
     src="https://cdn-icons-gif.flaticon.com/14675/14675904.gif"
-    title="Give us some Feedback! 😃" 
+    title="Give us Feedback! 😃" 
     alt="Feedback-Icon"
     style="height: 48px; width: 48px; border-radius: 50%; cursor: pointer;"
   ></a>
 </div>
-<!----------------------------
+
+<!-- WELCOME UPDATES Modal Overlay --> 
+<div id="UpdatesModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">   
+  <div class="bg-slate-900 border-4 border-slate-950 w-full max-w-sm flex flex-col shadow-[12px_12px_0px_0px_#290202] overflow-hidden"> 
+
+    <div class="bg-slate-800 border-b-4 border-slate-950 p-4 flex items-center justify-between"> 
+      <h3 class="text-2xl font-black text-yellow-400 tracking-wider" style="font-family: 'Jersey 25', monospace, sans-serif;">UPDATES:</h3>       
+      <button id="closeUpdatesModal" class="px-3 py-1 bg-red-600 hover:bg-red-500 border-2 border-slate-950 text-white font-black text-sm uppercase shadow-[2px_2px_0px_0px_#020617] active:translate-x-0.5 active:translate-y-0.5 focus:outline-none">
+        X
+      </button> 
+    </div> 
+
+    <div class="p-6 bg-slate-950 flex justify-center items-center">
+      <!-- IFrame -->
+      <div class="border-4 border-slate-900 bg-black p-2 flex justify-center items-center">
+        <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F29518950301062807%2F&show_text=false&width=267&t=0" 
+                width="267" 
+                height="476" 
+                style="border:none;overflow:hidden" 
+                scrolling="no" 
+                frameborder="0" 
+                allowfullscreen="true" 
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+        </iframe> 
+      </div>
+    </div>
+  </div> 
+</div>
+
+
+
+      <!----------------------------
   QUESTS AND REWARDS SECTION
 ------------------------------->
   <!-- Icon -->
